@@ -127,6 +127,7 @@ DEPENDENCIES
   rails (~> 5.0.0)
   spring
   spring-watcher-listen (~> 2.0.0)
+  sprockets
   tzinfo-data
 
 BUNDLED WITH

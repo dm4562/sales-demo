@@ -29,5 +29,8 @@ module SalesDemo
 
     # Explicitly add the 'node_modules' directory
     config.assets.paths << Rails.root.join('node_modules')
+
+    # Explicitly add systemjs
+    # config.assets.paths << Rails.root.join('systemjs.config.js')
   end
 end

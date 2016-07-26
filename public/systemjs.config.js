@@ -5,10 +5,11 @@
 (function(global) {
   // map tells the System loader where to look for things
   var map = {
-    'app': 'public/app', // 'dist',
-    '@angular': 'node_modules/@angular',
-    'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
-    'rxjs': 'node_modules/rxjs'
+    'app': 'app', // 'dist',
+    '@angular': 'assets/@angular',
+    'angular2-in-memory-web-api': 'assets/angular2-in-memory-web-api',
+    'rxjs': 'assets/rxjs',
+    '@angular2-material': 'assets/@angular2-material'
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
@@ -36,6 +37,26 @@
     'router-deprecated',
     'upgrade',
   ];
+
+  var materialPkgs = [
+    'core',
+    'button',
+    'card',
+    'checkbox',
+    'grid-list',
+    'icon',
+    'input',
+    'list',
+    'menu',
+    'progress-bar',
+    'progress-circle',
+    'radio',
+    'slidenav',
+    'slide-toggle',
+    'tabs',
+    'toolbar'
+  ];
+
   // Individual files (~300 requests):
   function packIndex(pkgName) {
     packages['@angular/' + pkgName] = {
@@ -58,5 +79,11 @@
     map: map,
     packages: packages
   };
+
+  materialPkgs.forEach(function(pkg) {
+    packages[("@angular2-material/" + pkg)] = {
+      main: pkg + ".js"
+    };
+  });
   System.config(config);
 })(this);

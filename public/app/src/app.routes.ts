@@ -5,6 +5,11 @@ import { HeroDetailComponent } from './hero-detail.component';
 
 const routes: RouterConfig = [
   {
+    path: '',
+    redirectTo: '/dashboard',
+    pathMatch: 'full'
+  },
+  {
     path: 'heroes',
     component: HeroesComponent
   },
@@ -15,11 +20,6 @@ const routes: RouterConfig = [
   {
     path: 'detail/:id',
     component: HeroDetailComponent
-  },
-  {
-    path: '',
-    redirectTo: '/dashboard',
-    pathMatch: 'full'
   }
 ];
 

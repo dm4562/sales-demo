@@ -5,6 +5,11 @@ var dashboard_component_1 = require('./dashboard.component');
 var hero_detail_component_1 = require('./hero-detail.component');
 var routes = [
     {
+        path: '',
+        redirectTo: '/dashboard',
+        pathMatch: 'full'
+    },
+    {
         path: 'heroes',
         component: heroes_component_1.HeroesComponent
     },
@@ -15,11 +20,6 @@ var routes = [
     {
         path: 'detail/:id',
         component: hero_detail_component_1.HeroDetailComponent
-    },
-    {
-        path: '',
-        redirectTo: '/dashboard',
-        pathMatch: 'full'
     }
 ];
 exports.appRouterProviders = [

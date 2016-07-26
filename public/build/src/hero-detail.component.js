@@ -61,8 +61,8 @@ var HeroDetailComponent = (function () {
     HeroDetailComponent = __decorate([
         core_1.Component({
             selector: 'my-hero-detail',
-            templateUrl: 'app/hero-detail.component.html',
-            styleUrls: ['app/hero-detail.component.css']
+            templateUrl: 'app/templates/hero-detail.component.html',
+            styleUrls: ['app/styles/hero-detail.component.css']
         }), 
         __metadata('design:paramtypes', [hero_service_1.HeroService, router_1.ActivatedRoute])
     ], HeroDetailComponent);

@@ -1,0 +1,36 @@
+<!-- public/index.html -->
+<html>
+
+  <head>
+    <!-- 1. Load libraries -->
+    <!-- <script src="/assets/intl/dist/Intl.js"></script>
+    <script src="/assets/intl/locale-data/jsonp/en.js"></script>
+    <script src="/assets/es6-shim/es6-shim.min.js"></script>
+    <script src="/assets/systemjs/dist/system-polyfills.js"></script>
+    <script src="/assets/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="/assets/systemjs/dist/system.src.js"></script>
+    <script src="/assets/rxjs/bundles/Rx.js"></script>
+    <script src="/assets/angular2/bundles/angular2.dev.js"></script>
+    <script src="/assets/angular2/bundles/http.dev.js"></script>
+    <script src="/assets/angular2/bundles/router.dev.js"></script> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="assets/core-js/client/shim.min.js"></script>
+    <script src="assets/zone.js/dist/zone.js"></script>
+    <script src="assets/reflect-metadata/Reflect.js"></script>
+    <script src="assets/systemjs/dist/system.src.js"></script>
+    <!-- 2. Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.import('app').catch(function(err) {
+        console.error(err);
+      });
+    </script>
+  </head>
+
+  <body>
+    <!-- <base href="/"> -->
+    <my-app></my-app>
+  </body>
+
+</html>

@@ -16,8 +16,8 @@ import { appRouterProviders } from './app.routes';
 // enableProdMode();
 
 bootstrap(AppComponent, [
-  disableDeprecatedForms,
-  provideForms,
+  disableDeprecatedForms(),
+  provideForms(),
   appRouterProviders,
   HTTP_PROVIDERS,
   { provide: LocationStrategy, useClass: HashLocationStrategy },

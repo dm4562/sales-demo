@@ -23,6 +23,10 @@ gem 'puma', '~> 3.0'
 # For asset pipeline
 gem 'sprockets'
 
+# Devise auth for angular
+gem 'devise_token_auth'
+gem 'omniauth'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

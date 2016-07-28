@@ -5,12 +5,12 @@
 (function(global) {
   // map tells the System loader where to look for things
   var map = {
-    'app': 'build/src', // 'dist',
+    'app': 'build/', // 'dist',
     '@angular': 'assets/@angular',
     'angular2-in-memory-web-api': 'assets/angular2-in-memory-web-api',
     'rxjs': 'assets/rxjs',
     '@angular2-material': 'assets/@angular2-material',
-    'angular2-devise': 'assets/angular2-devise-token-auth/dist'
+    'angular2-devise-token-auth': 'assets/angular2-devise-token-auth/dist'
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
@@ -25,7 +25,7 @@
       main: 'index.js',
       defaultExtension: 'js'
     },
-    'angular2-devise': {
+    'angular2-devise-token-auth': {
       main: 'angular2-devise-token-auth',
       defaultExtension: 'js'
     }

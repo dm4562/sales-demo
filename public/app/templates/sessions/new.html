@@ -1,11 +1,17 @@
-<div class="form-group">
-  <label for="email">Email</label>
-  <input type="email" name="email" required [(ngModel)]="form.email">
-</div>
+<div class="app-content">
 
-<div class="form-group">
-  <label for="password">Password</label>
-  <input type="password" name="password" required [(ngModel)]="form.password">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input md-input type="email" name="email" required [(ngModel)]="form.email" placeholder="Email">
+
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" name="password" required [(ngModel)]="form.password">
+
+  </div>
+  {{form.email}} {{form.password}}
+  <button type="button" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+
 </div>
-{{form.email}} {{form.password}}
-<button (click)="onSubmit()">Submit</button>

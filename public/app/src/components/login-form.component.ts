@@ -6,9 +6,15 @@ import { Router } from '@angular/router';
 import { LoginForm } from '../models/login-form';
 import { SessionsService } from '../services/sessions.service';
 
+import { BUTTON_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
+
 @Component({
   selector: 'login-form',
-  templateUrl: 'app/templates/sessions/new.html'
+  templateUrl: 'app/templates/sessions/new.html',
+  styleUrls: ['app/styles/login-form.component.scss'],
+  directives: [
+    BUTTON_DIRECTIVES
+  ]
 })
 
 export class LoginFormComponent implements OnInit, OnDestroy {

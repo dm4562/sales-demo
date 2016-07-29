@@ -10,10 +10,6 @@ import { HTTP_PROVIDERS } from '@angular/http';
 import { disableDeprecatedForms, provideForms } from '@angular/forms';
 import { enableProdMode } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-
-// devise auth imports
-import { AUTH_PROVIDERS, authService } from 'angular2-devise-token-auth';
-
 import { AppComponent } from './components/app.component';
 import { appRouterProviders } from './app.routes';
 // enableProdMode();
@@ -23,7 +19,5 @@ bootstrap(AppComponent, [
   provideForms,
   appRouterProviders,
   HTTP_PROVIDERS,
-  AUTH_PROVIDERS,
-  authService('http://localhost:3000/auth'),
   { provide: LocationStrategy, useClass: HashLocationStrategy }
 ]);

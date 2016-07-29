@@ -13,6 +13,7 @@ var common_1 = require('@angular/common');
 var router_1 = require('@angular/router');
 var login_form_1 = require('../models/login-form');
 var sessions_service_1 = require('../services/sessions.service');
+var ng2_bootstrap_1 = require('ng2-bootstrap/ng2-bootstrap');
 var LoginFormComponent = (function () {
     function LoginFormComponent(sessions, location, router) {
         this.sessions = sessions;
@@ -43,7 +44,11 @@ var LoginFormComponent = (function () {
     LoginFormComponent = __decorate([
         core_1.Component({
             selector: 'login-form',
-            templateUrl: 'app/templates/sessions/new.html'
+            templateUrl: 'app/templates/sessions/new.html',
+            styleUrls: ['app/styles/login-form.component.scss'],
+            directives: [
+                ng2_bootstrap_1.BUTTON_DIRECTIVES
+            ]
         }), 
         __metadata('design:paramtypes', [sessions_service_1.SessionsService, common_1.Location, router_1.Router])
     ], LoginFormComponent);

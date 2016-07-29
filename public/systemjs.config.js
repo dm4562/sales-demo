@@ -9,8 +9,10 @@
     '@angular': 'assets/@angular',
     'angular2-in-memory-web-api': 'assets/angular2-in-memory-web-api',
     'rxjs': 'assets/rxjs',
-    '@angular2-material': 'assets/@angular2-material',
-    'angular2-devise-token-auth': 'assets/angular2-devise-token-auth/dist'
+    // '@angular2-material': 'assets/@angular2-material',
+    'ng2-bootstrap': 'assets/ng2-bootstrap/',
+    'moment': 'assets/moment',
+    // 'angular2-devise-token-auth': 'assets/angular2-devise-token-auth/dist'
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
@@ -28,6 +30,10 @@
     'angular2-devise-token-auth': {
       main: 'angular2-devise-token-auth',
       defaultExtension: 'js'
+    },
+    'moment': {
+      main: 'moment.js',
+      defaultExtension: 'js'
     }
   };
   var ngPackageNames = [
@@ -43,24 +49,24 @@
     'upgrade',
   ];
 
-  var materialPkgs = [
-    'core',
-    'button',
-    'card',
-    'checkbox',
-    'grid-list',
-    'icon',
-    'input',
-    'list',
-    'menu',
-    'progress-bar',
-    'progress-circle',
-    'radio',
-    'slidenav',
-    'slide-toggle',
-    'tabs',
-    'toolbar'
-  ];
+  // var materialPkgs = [
+  //   'core',
+  //   'button',
+  //   'card',
+  //   'checkbox',
+  //   'grid-list',
+  //   'icon',
+  //   'input',
+  //   'list',
+  //   'menu',
+  //   'progress-bar',
+  //   'progress-circle',
+  //   'radio',
+  //   'slidenav',
+  //   'slide-toggle',
+  //   'tabs',
+  //   'toolbar'
+  // ];
 
   // Individual files (~300 requests):
   function packIndex(pkgName) {
@@ -85,10 +91,10 @@
     packages: packages
   };
 
-  materialPkgs.forEach(function(pkg) {
-    packages[("@angular2-material/" + pkg)] = {
-      main: pkg + ".js"
-    };
-  });
+  // materialPkgs.forEach(function(pkg) {
+  //   packages[("@angular2-material/" + pkg)] = {
+  //     main: pkg + ".js"
+  //   };
+  // });
   System.config(config);
 })(this);

@@ -12,29 +12,34 @@ var core_1 = require('@angular/core');
 var sessions_service_1 = require('../services/sessions.service');
 var router_1 = require('@angular/router');
 var common_1 = require('@angular/common');
-var protected_directive_1 = require('../directives/protected.directive');
-var HomeComponent = (function () {
-    function HomeComponent(sessions, router, location) {
+var ProtectedDirective = (function () {
+    function ProtectedDirective(sessions, router, location) {
         this.sessions = sessions;
         this.router = router;
         this.location = location;
     }
-    HomeComponent.prototype.ngOnInit = function () {
+    ProtectedDirective.prototype.ngOnInit = function () {
+        var _this = this;
+        this.sub = this.sessions.subscribe(function (val) {
+            if (!val.loggedIn) {
+                _this.location.replaceState('/');
+                _this.router.navigateByUrl('/sign_in');
+            }
+        });
+        this.sessions.isLoggedIn();
     };
-    HomeComponent.prototype.validate = function () {
-        this.sessions.validateToken();
+    ProtectedDirective.prototype.ngOnDestroy = function () {
+        if (this.sub !== null) {
+            this.sub.unsubscribe();
+        }
     };
-    HomeComponent.prototype.ngOnDestroy = function () {
-    };
-    HomeComponent = __decorate([
-        core_1.Component({
-            selector: 'home',
-            templateUrl: 'app/templates/home.component.html',
-            directives: [protected_directive_1.ProtectedDirective]
+    ProtectedDirective = __decorate([
+        core_1.Directive({
+            selector: 'protected'
         }), 
         __metadata('design:paramtypes', [sessions_service_1.SessionsService, router_1.Router, common_1.Location])
-    ], HomeComponent);
-    return HomeComponent;
+    ], ProtectedDirective);
+    return ProtectedDirective;
 }());
-exports.HomeComponent = HomeComponent;
-//# sourceMappingURL=home.component.js.map
+exports.ProtectedDirective = ProtectedDirective;
+//# sourceMappingURL=protected.directive.js.map

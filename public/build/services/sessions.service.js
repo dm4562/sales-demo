@@ -8,73 +8,115 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var angular2_devise_token_auth_1 = require('angular2-devise-token-auth');
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
 var SessionsService = (function () {
-    function SessionsService(authService, authHttp) {
-        this.authService = authService;
-        this.authHttp = authHttp;
-        this.loginUrl = "http://localhost:3000/auth/";
-        this.signIn = "sign_in";
+    function SessionsService(http) {
+        this.http = http;
+        this.url = "http://localhost:3000/auth/";
         this.loggedIn = false;
         this.currentUser = null;
         this.statusEmitter = new core_1.EventEmitter();
     }
-    // loginUser(form: LoginForm) {
-    //   let body = JSON.stringify(form);
-    //   let headers = new Headers({ 'Content-Type': 'application/json' });
-    //   let options = new RequestOptions({ headers: headers });
-    //   console.log("form", body)
-    //   return this.http.post(this.loginUrl, body, options)
-    //     .subscribe(
-    //     res => console.log('success', res),
-    //     res => console.log('fail', res)
-    //     );
-    // }
     SessionsService.prototype.login = function (form) {
         var _this = this;
-        this.authService.signIn(form)
-            .subscribe(function (res) {
-            _this.loggedIn = true;
-            _this.currentUser = res.json().data;
-            // console.log(this.currentUser);
-            // console.log(res);
-            _this.emitAuthStatus(null);
-        }, function (error) {
-            console.log("login failed", error);
-            _this.loggedIn = false;
-            _this.currentUser = null;
-            _this.emitAuthStatus(null);
-        });
-    };
-    SessionsService.prototype.isLoggedIn = function () {
-        var _this = this;
-        this.authService.validateToken()
+        var body = JSON.stringify(form);
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        // console.log("form", body)
+        return this.http.post(this.url + "sign_in", body, options)
             .subscribe(function (success) {
+            var headers = success.headers;
+            _this.currentUser = success.json().data;
+            _this.currentUser.accessToken = headers.get('access-token');
+            _this.currentUser.client = headers.get('client');
+            _this.currentUser.expiry = headers.get('expiry');
             _this.loggedIn = true;
             _this.emitAuthStatus(null);
+            console.log("user", _this.currentUser);
         }, function (fail) {
-            _this.loggedIn = false;
+            console.log('login failed', fail);
             _this.currentUser = null;
-            console.log("could not validate token", fail);
-            _this.emitAuthStatus(null);
+            _this.loggedIn = false;
         });
     };
+    // login2(form: LoginForm) {
+    //   this.authService.signIn(form)
+    //     .subscribe(
+    //     (res) => {
+    //       this.loggedIn = true;
+    //       this.currentUser = res.json().data;
+    //       // console.log(this.currentUser);
+    //       // console.log(res);
+    //       this.emitAuthStatus(null);
+    //     },
+    //     (error) => {
+    //       console.log("login failed", error);
+    //       this.loggedIn = false;
+    //       this.currentUser = null;
+    //       this.emitAuthStatus(null);
+    //     });
+    // }
+    SessionsService.prototype.isLoggedIn = function () {
+        this.validateToken();
+    };
+    SessionsService.prototype.validateToken = function () {
+        var _this = this;
+        if (this.currentUser !== null) {
+            var headers = new http_1.Headers({
+                'Content-Type': 'application/json',
+                'access-token': this.currentUser.accessToken,
+                'client': this.currentUser.client,
+                'uid': this.currentUser.uid
+            });
+            var options = new http_1.RequestOptions({ headers: headers });
+            return this.http.get(this.url + "validate_token", options).subscribe(function (success) {
+                console.log("token valid");
+                _this.loggedIn = true;
+                _this.emitAuthStatus(null);
+            }, function (fail) {
+                _this.loggedIn = false;
+                _this.currentUser = null;
+                console.log("could not validate token", fail);
+                _this.emitAuthStatus(null);
+            });
+        }
+        else {
+            this.emitAuthStatus(null);
+        }
+    };
+    // validateToken() {
+    //   // this.authHttp.get('http://localhost:3000/heros')
+    //   this.authService.validateToken()
+    //     .subscribe(
+    //     (success) => {
+    //       console.log(success);
+    //       this.loggedIn = true;
+    //       this.emitAuthStatus(null);
+    //     },
+    //     (fail) => {
+    //       this.loggedIn = false;
+    //       this.currentUser = null;
+    //       console.log("could not validate token", fail);
+    //       this.emitAuthStatus(null);
+    //     });
+    // }
     SessionsService.prototype.getCurrentUser = function () {
         return this.currentUser;
     };
-    SessionsService.prototype.logout = function () {
-        var _this = this;
-        this.authService.signOut()
-            .subscribe(function (success) {
-            _this.loggedIn = false;
-            _this.currentUser = null;
-            _this.emitAuthStatus(null);
-        }, function (error) {
-            console.log("logout failed", error);
-            _this.emitAuthStatus(null);
-        });
-    };
+    // logout() {
+    //   this.authService.signOut()
+    //     .subscribe(
+    //     success => {
+    //       this.loggedIn = false;
+    //       this.currentUser = null;
+    //       this.emitAuthStatus(null);
+    //     },
+    //     error => {
+    //       console.log("logout failed", error);
+    //       this.emitAuthStatus(null);
+    //     });
+    // }
     SessionsService.prototype.emitAuthStatus = function (data) {
         var obj = {
             loggedIn: this.loggedIn,
@@ -93,7 +135,7 @@ var SessionsService = (function () {
     ], SessionsService.prototype, "statusEmitter", void 0);
     SessionsService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [angular2_devise_token_auth_1.AuthService, angular2_devise_token_auth_1.AuthHttp])
+        __metadata('design:paramtypes', [http_1.Http])
     ], SessionsService);
     return SessionsService;
 }());

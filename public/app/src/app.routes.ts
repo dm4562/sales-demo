@@ -12,6 +12,7 @@ const routes: RouterConfig = [
   },
   {
     path: 'heroes',
+
     component: HeroesComponent
   },
   {

@@ -6,4 +6,14 @@ export class User {
   name: string;
   nickname: string;
   image: any;
+  accessToken: string;
+  client: string;
+  expiry: string;
+
+  authHeaders: Array<string> = [
+    this.uid,
+    this.accessToken,
+    this.client,
+    this.expiry
+  ]
 }

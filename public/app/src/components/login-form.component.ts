@@ -15,7 +15,6 @@ export class LoginFormComponent implements OnInit, OnDestroy {
 
   private sub: any = null;
   @Input() form: LoginForm = new LoginForm();
-  submitted: boolean = false;
 
   constructor(
     private sessions: SessionsService,
@@ -24,19 +23,15 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   ) { }
 
   onSubmit() {
-    this.submitted = true;
     this.sessions.login(this.form);
-    // console.log(this.sessions.getCurrentUser());
   }
 
   ngOnInit() {
-    this.sub = this.sessions.statusEmitter.subscribe(
+    this.sub = this.sessions.subscribe(
       val => {
-        console.log("caught", val);
         if (val.loggedIn) {
-          console.log("caught", val);
           this.location.replaceState('/');
-          this.router.navigateByUrl('/dashboard');
+          this.router.navigateByUrl('/');
         }
       });
   }

@@ -34,7 +34,6 @@
     "@angular2-material/slide-toggle": "^2.0.0-alpha.6",
     "@angular2-material/tabs": "^2.0.0-alpha.6",
     "@angular2-material/toolbar": "^2.0.0-alpha.6",
-    "angular2-devise-token-auth": "^1.2.1",
     "angular2-in-memory-web-api": "0.0.14",
     "bootstrap": "^3.3.6",
     "core-js": "^2.4.0",

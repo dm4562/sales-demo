@@ -20,21 +20,16 @@ var LoginFormComponent = (function () {
         this.router = router;
         this.sub = null;
         this.form = new login_form_1.LoginForm();
-        this.submitted = false;
     }
     LoginFormComponent.prototype.onSubmit = function () {
-        this.submitted = true;
         this.sessions.login(this.form);
-        // console.log(this.sessions.getCurrentUser());
     };
     LoginFormComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.sub = this.sessions.statusEmitter.subscribe(function (val) {
-            console.log("caught", val);
+        this.sub = this.sessions.subscribe(function (val) {
             if (val.loggedIn) {
-                console.log("caught", val);
                 _this.location.replaceState('/');
-                _this.router.navigateByUrl('/dashboard');
+                _this.router.navigateByUrl('/');
             }
         });
     };

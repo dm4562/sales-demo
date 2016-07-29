@@ -1,5 +1,5 @@
 import { Component, Input, Output, OnInit, OnDestroy } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm } from '@angular/common';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 

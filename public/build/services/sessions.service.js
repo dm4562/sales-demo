@@ -77,38 +77,9 @@ var SessionsService = (function () {
             this.emitAuthStatus(null);
         }
     };
-    // validateToken() {
-    //   // this.authHttp.get('http://localhost:3000/heros')
-    //   this.authService.validateToken()
-    //     .subscribe(
-    //     (success) => {
-    //       console.log(success);
-    //       this.loggedIn = true;
-    //       this.emitAuthStatus(null);
-    //     },
-    //     (fail) => {
-    //       this.loggedIn = false;
-    //       this.currentUser = null;
-    //       console.log("could not validate token", fail);
-    //       this.emitAuthStatus(null);
-    //     });
-    // }
     SessionsService.prototype.getCurrentUser = function () {
         return this.currentUser;
     };
-    // logout() {
-    //   this.authService.signOut()
-    //     .subscribe(
-    //     success => {
-    //       this.loggedIn = false;
-    //       this.currentUser = null;
-    //       this.emitAuthStatus(null);
-    //     },
-    //     error => {
-    //       console.log("logout failed", error);
-    //       this.emitAuthStatus(null);
-    //     });
-    // }
     SessionsService.prototype.logout = function () {
         var _this = this;
         if (this.currentUser !== null) {

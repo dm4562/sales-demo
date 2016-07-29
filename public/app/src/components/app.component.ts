@@ -7,9 +7,7 @@ import '../rxjs-extensions';
 
 @Component({
   selector: 'my-app',
-  template: `
-    <router-outlet></router-outlet>
-  `,
+  templateUrl: 'app/templates/app.component.html',
   styleUrls: ['app/styles/app.component.css'],
   directives: [ROUTER_DIRECTIVES],
   providers: [

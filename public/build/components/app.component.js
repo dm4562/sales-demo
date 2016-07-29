@@ -14,9 +14,21 @@ var hero_service_1 = require('../services/hero.service');
 var sessions_service_1 = require('../services/sessions.service');
 require('../rxjs-extensions');
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(sessions) {
+        this.sessions = sessions;
+        this.contentLoaded = false;
         this.title = 'Tour of Heroes';
     }
+    AppComponent.prototype.logout = function () {
+        this.sessions.logout();
+    };
+    AppComponent.prototype.ngAfterViewInit = function () {
+        this.contentLoaded = true;
+    };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], AppComponent.prototype, "contentLoaded", void 0);
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
@@ -28,7 +40,7 @@ var AppComponent = (function () {
                 sessions_service_1.SessionsService
             ]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [sessions_service_1.SessionsService])
     ], AppComponent);
     return AppComponent;
 }());

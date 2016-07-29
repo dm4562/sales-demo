@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, Input } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 
 import { HeroService } from '../services/hero.service';
@@ -16,6 +16,16 @@ import '../rxjs-extensions';
   ]
 })
 
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
+  @Input() private contentLoaded: boolean = false;
   title = 'Tour of Heroes';
+
+  constructor(private sessions: SessionsService) { }
+
+  logout() {
+    this.sessions.logout();
+  }
+  ngAfterViewInit() {
+    this.contentLoaded = true;
+  }
 }

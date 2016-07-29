@@ -71,7 +71,7 @@ var SessionsService = (function () {
             });
             var options = new http_1.RequestOptions({ headers: headers });
             return this.http.get(this.url + "validate_token", options).subscribe(function (success) {
-                console.log("token valid");
+                // console.log("token valid");
                 _this.loggedIn = true;
                 _this.emitAuthStatus(null);
             }, function (fail) {
@@ -117,6 +117,30 @@ var SessionsService = (function () {
     //       this.emitAuthStatus(null);
     //     });
     // }
+    SessionsService.prototype.logout = function () {
+        var _this = this;
+        if (this.currentUser !== null) {
+            var headers = new http_1.Headers({
+                'Content-Type': 'application/json',
+                'uid': this.currentUser.uid,
+                'client': this.currentUser.client,
+                'access-token': this.currentUser.accessToken
+            });
+            var options = new http_1.RequestOptions({ headers: headers });
+            this.http.delete(this.url + "sign_out", options).subscribe(function (success) {
+                console.log("logout successful");
+                _this.currentUser = null;
+                _this.loggedIn = null;
+                _this.emitAuthStatus(null);
+            }, function (fail) {
+                console.log("couldn't log out", fail);
+                _this.emitAuthStatus(null);
+            });
+        }
+        else {
+            this.emitAuthStatus(null);
+        }
+    };
     SessionsService.prototype.emitAuthStatus = function (data) {
         var obj = {
             loggedIn: this.loggedIn,

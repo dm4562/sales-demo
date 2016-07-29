@@ -74,7 +74,7 @@ export class SessionsService {
       let options = new RequestOptions({ headers: headers });
       return this.http.get(`${this.url}validate_token`, options).subscribe(
         (success: Response) => {
-          console.log("token valid");
+          // console.log("token valid");
           this.loggedIn = true;
           this.emitAuthStatus(null);
         },
@@ -122,6 +122,32 @@ export class SessionsService {
   //       this.emitAuthStatus(null);
   //     });
   // }
+
+  logout() {
+    if (this.currentUser !== null) {
+      let headers = new Headers({
+        'Content-Type': 'application/json',
+        'uid': this.currentUser.uid,
+        'client': this.currentUser.client,
+        'access-token': this.currentUser.accessToken
+      });
+      let options = new RequestOptions({ headers: headers });
+      this.http.delete(`${this.url}sign_out`, options).subscribe(
+        (success: Response) => {
+          console.log("logout successful");
+          this.currentUser = null;
+          this.loggedIn = null;
+          this.emitAuthStatus(null);
+        },
+        (fail: Response) => {
+          console.log("couldn't log out", fail);
+          this.emitAuthStatus(null);
+        }
+      )
+    } else {
+      this.emitAuthStatus(null);
+    }
+  }
 
   private emitAuthStatus(data: any) {
     let obj = {

@@ -24,6 +24,9 @@ var HomeComponent = (function () {
     HomeComponent.prototype.validate = function () {
         this.sessions.validateToken();
     };
+    HomeComponent.prototype.logout = function () {
+        this.sessions.logout();
+    };
     HomeComponent.prototype.ngOnDestroy = function () {
     };
     HomeComponent = __decorate([

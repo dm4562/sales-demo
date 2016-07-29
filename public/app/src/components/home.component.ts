@@ -27,6 +27,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.sessions.validateToken();
   }
 
+  logout() {
+    this.sessions.logout();
+  }
+
   ngOnDestroy() {
 
   }

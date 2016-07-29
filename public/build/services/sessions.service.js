@@ -10,13 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+var angular2_locker_1 = require('angular2-locker');
 var SessionsService = (function () {
-    function SessionsService(http) {
+    function SessionsService(http, locker) {
         this.http = http;
+        this.locker = locker;
         this.url = "http://localhost:3000/auth/";
         this.loggedIn = false;
         this.currentUser = null;
+        this.lockerKey = 'currentUser';
         this.statusEmitter = new core_1.EventEmitter();
+        if (this.locker.has(this.lockerKey)) {
+            this.currentUser = this.locker.get('currentUser');
+        }
     }
     SessionsService.prototype.login = function (form) {
         var _this = this;
@@ -32,31 +38,16 @@ var SessionsService = (function () {
             _this.currentUser.client = headers.get('client');
             _this.currentUser.expiry = headers.get('expiry');
             _this.loggedIn = true;
+            _this.locker.set(_this.lockerKey, _this.currentUser);
             _this.emitAuthStatus(null);
             console.log("user", _this.currentUser);
         }, function (fail) {
             console.log('login failed', fail);
             _this.currentUser = null;
+            _this.locker.remove(_this.lockerKey);
             _this.loggedIn = false;
         });
     };
-    // login2(form: LoginForm) {
-    //   this.authService.signIn(form)
-    //     .subscribe(
-    //     (res) => {
-    //       this.loggedIn = true;
-    //       this.currentUser = res.json().data;
-    //       // console.log(this.currentUser);
-    //       // console.log(res);
-    //       this.emitAuthStatus(null);
-    //     },
-    //     (error) => {
-    //       console.log("login failed", error);
-    //       this.loggedIn = false;
-    //       this.currentUser = null;
-    //       this.emitAuthStatus(null);
-    //     });
-    // }
     SessionsService.prototype.isLoggedIn = function () {
         this.validateToken();
     };
@@ -77,6 +68,7 @@ var SessionsService = (function () {
             }, function (fail) {
                 _this.loggedIn = false;
                 _this.currentUser = null;
+                _this.locker.remove(_this.lockerKey);
                 console.log("could not validate token", fail);
                 _this.emitAuthStatus(null);
             });
@@ -131,6 +123,7 @@ var SessionsService = (function () {
                 console.log("logout successful");
                 _this.currentUser = null;
                 _this.loggedIn = null;
+                _this.locker.remove(_this.lockerKey);
                 _this.emitAuthStatus(null);
             }, function (fail) {
                 console.log("couldn't log out", fail);
@@ -159,7 +152,7 @@ var SessionsService = (function () {
     ], SessionsService.prototype, "statusEmitter", void 0);
     SessionsService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, angular2_locker_1.Locker])
     ], SessionsService);
     return SessionsService;
 }());

@@ -9,10 +9,9 @@
     '@angular': 'assets/@angular',
     'angular2-in-memory-web-api': 'assets/angular2-in-memory-web-api',
     'rxjs': 'assets/rxjs',
-    // '@angular2-material': 'assets/@angular2-material',
     'ng2-bootstrap': 'assets/ng2-bootstrap/',
     'moment': 'assets/moment',
-    // 'angular2-devise-token-auth': 'assets/angular2-devise-token-auth/dist'
+    'angular2-locker': 'assets/angular2-locker'
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
@@ -27,8 +26,8 @@
       main: 'index.js',
       defaultExtension: 'js'
     },
-    'angular2-devise-token-auth': {
-      main: 'angular2-devise-token-auth',
+    'angular2-locker': {
+      main: '/dist/locker',
       defaultExtension: 'js'
     },
     'moment': {

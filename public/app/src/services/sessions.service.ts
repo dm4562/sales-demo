@@ -4,18 +4,26 @@ import { Headers, Http, RequestOptions, Response, RequestOptionsArgs } from '@an
 import { LoginForm } from '../models/login-form';
 import { User } from '../models/user';
 
+import { Locker } from 'angular2-locker';
+
 @Injectable()
 export class SessionsService {
   private url = "http://localhost:3000/auth/";
 
   private loggedIn: boolean = false;
   private currentUser: User = null;
+  private lockerKey: string = 'currentUser';
 
   @Output() private statusEmitter = new EventEmitter();
 
   constructor(
-    private http: Http
-  ) { }
+    private http: Http,
+    private locker: Locker
+  ) {
+    if (this.locker.has(this.lockerKey)) {
+      this.currentUser = this.locker.get('currentUser');
+    }
+  }
 
   login(form: LoginForm) {
     let body = JSON.stringify(form);
@@ -31,33 +39,17 @@ export class SessionsService {
         this.currentUser.client = headers.get('client');
         this.currentUser.expiry = headers.get('expiry');
         this.loggedIn = true;
+        this.locker.set(this.lockerKey, this.currentUser);
         this.emitAuthStatus(null);
         console.log("user", this.currentUser);
       },
       (fail: Response) => {
         console.log('login failed', fail);
         this.currentUser = null;
+        this.locker.remove(this.lockerKey);
         this.loggedIn = false;
       });
   }
-
-  // login2(form: LoginForm) {
-  //   this.authService.signIn(form)
-  //     .subscribe(
-  //     (res) => {
-  //       this.loggedIn = true;
-  //       this.currentUser = res.json().data;
-  //       // console.log(this.currentUser);
-  //       // console.log(res);
-  //       this.emitAuthStatus(null);
-  //     },
-  //     (error) => {
-  //       console.log("login failed", error);
-  //       this.loggedIn = false;
-  //       this.currentUser = null;
-  //       this.emitAuthStatus(null);
-  //     });
-  // }
 
   isLoggedIn() {
     this.validateToken();
@@ -81,6 +73,7 @@ export class SessionsService {
         (fail: Response) => {
           this.loggedIn = false;
           this.currentUser = null;
+          this.locker.remove(this.lockerKey);
           console.log("could not validate token", fail);
           this.emitAuthStatus(null);
         });
@@ -137,6 +130,7 @@ export class SessionsService {
           console.log("logout successful");
           this.currentUser = null;
           this.loggedIn = null;
+          this.locker.remove(this.lockerKey);
           this.emitAuthStatus(null);
         },
         (fail: Response) => {

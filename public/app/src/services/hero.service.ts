@@ -1,16 +1,32 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Hero } from '../models/hero';
+import { SessionsService } from './sessions.service';
+import { Locker } from 'angular2-locker';
 
 @Injectable()
 export class HeroService {
-  private heroesUrl = 'app/heroes'; // URL to web API
+  private baseUrl = 'http://localhost:3000'; // URL to web API
 
-  constructor(private http: Http) { }
+  constructor(
+    private http: Http,
+    private locker: Locker,
+    private sessions: SessionsService
+  ) { }
+
+  getTopHeroes() {
+    if (this.locker.has('currentUser')) {
+      let options = new RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
+      return this.http.get(`${this.baseUrl}/top_four_heroes`, options)
+        .toPromise()
+        .then(res => res.json().heroes as Hero[])
+        .catch(this.handleError);
+    }
+  }
 
   getHeroes() {
-    return this.http.get(this.heroesUrl)
+    return this.http.get(this.baseUrl)
       .toPromise()
       .then(response => response.json().data as Hero[])
       .catch(this.handleError);
@@ -38,7 +54,7 @@ export class HeroService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.post(this.heroesUrl, JSON.stringify(hero), { headers: headers })
+    return this.http.post(this.baseUrl, JSON.stringify(hero), { headers: headers })
       .toPromise().then(res => res.json().data)
       .catch(this.handleError);
   }
@@ -48,7 +64,7 @@ export class HeroService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    let url = `${this.heroesUrl}/${hero.id}`;
+    let url = `${this.baseUrl}/${hero.id}`;
 
     return this.http
       .put(url, JSON.stringify(hero), { headers: headers })
@@ -61,7 +77,7 @@ export class HeroService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    let url = `${this.heroesUrl}/${hero.id}`;
+    let url = `${this.baseUrl}/${hero.id}`;
 
     return this.http
       .delete(url, { headers: headers })

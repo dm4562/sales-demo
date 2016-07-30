@@ -35,9 +35,13 @@ export class SessionsService {
       (success: Response) => {
         let headers = success.headers;
         this.currentUser = success.json().data;
-        this.currentUser.accessToken = headers.get('access-token');
-        this.currentUser.client = headers.get('client');
-        this.currentUser.expiry = headers.get('expiry');
+        this.currentUser.authHeaders = new Headers({
+          'Content-Type': 'application/json',
+          'access-token': headers.get('access-token'),
+          'client': headers.get('client'),
+          'uid': headers.get('uid'),
+          'expiry': headers.get('expiry')
+        });
         this.loggedIn = true;
         this.locker.set(this.lockerKey, this.currentUser);
         this.emitAuthStatus(null);
@@ -57,12 +61,7 @@ export class SessionsService {
 
   validateToken() {
     if (this.currentUser !== null) {
-      let headers = new Headers({
-        'Content-Type': 'application/json',
-        'access-token': this.currentUser.accessToken,
-        'client': this.currentUser.client,
-        'uid': this.currentUser.uid
-      });
+      let headers = this.currentUser.authHeaders;
       let options = new RequestOptions({ headers: headers });
       return this.http.get(`${this.url}validate_token`, options).subscribe(
         (success: Response) => {
@@ -88,18 +87,13 @@ export class SessionsService {
 
   logout() {
     if (this.currentUser !== null) {
-      let headers = new Headers({
-        'Content-Type': 'application/json',
-        'uid': this.currentUser.uid,
-        'client': this.currentUser.client,
-        'access-token': this.currentUser.accessToken
-      });
+      let headers = this.currentUser.authHeaders;
       let options = new RequestOptions({ headers: headers });
       this.http.delete(`${this.url}sign_out`, options).subscribe(
         (success: Response) => {
           console.log("logout successful");
           this.currentUser = null;
-          this.loggedIn = null;
+          this.loggedIn = false;
           this.locker.remove(this.lockerKey);
           this.emitAuthStatus(null);
         },
@@ -120,7 +114,7 @@ export class SessionsService {
       data: data
     };
     this.statusEmitter.emit(obj);
-    console.log("emit", obj);
+    // console.log("emit", obj);
   }
 
   public subscribe(onNext: (value: any) => void, onThrow?: (exception: any) => void, onReturn?: () => void) {

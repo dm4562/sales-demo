@@ -6,7 +6,7 @@ class HerosController < ApplicationController
   def index
     @heros = Hero.all
 
-    render json: @heros
+    render json: { heroes: @heros }
   end
 
   # GET /heros/1
@@ -19,24 +19,29 @@ class HerosController < ApplicationController
     @hero = Hero.new(hero_params)
 
     if @hero.save
-      render json: @hero, status: :created, location: @hero
+      render json: { hero: @hero }, status: :created, location: @hero
     else
-      render json: @hero.errors, status: :unprocessable_entity
+      render json: { errors: @hero.errors }, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /heros/1
   def update
     if @hero.update(hero_params)
-      render json: @hero
+      render json: { hero: @hero }
     else
-      render json: @hero.errors, status: :unprocessable_entity
+      render json: { errors: @hero.errors }, status: :unprocessable_entity
     end
   end
 
   # DELETE /heros/1
   def destroy
     @hero.destroy
+  end
+
+  def top_four
+    heroes = Hero.order(power: :desc).limit(4)
+    render json: { heroes: heroes }
   end
 
   private
@@ -47,6 +52,6 @@ class HerosController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def hero_params
-    params.require(:hero).permit(:name, :type)
+    params.require(:hero).permit(:name, :power_type, :description, :power, :image_src)
   end
 end

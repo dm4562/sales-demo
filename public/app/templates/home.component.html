@@ -1,28 +1,26 @@
-<protected>
-  <div class="cover">
-    <div class="cover-image"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <h1>Power</h1>
-          <p>Welcome to the Super Hero app
-            <br>
-          </p>
+<protected></protected>
+<div class="cover">
+  <div class="cover-image"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h1>Power</h1>
+        <p>Welcome to the Super Hero app
           <br>
-          <br><a class="btn btn-lg btn-default" href="#dashboard-heroes">View</a> </div>
-      </div>
+        </p>
+        <br>
+        <br><a class="btn btn-lg btn-default" href="dashboard-heroes">View</a> </div>
     </div>
   </div>
-  <div class="section" id="dashboard-heroes">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3"> <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
-          <h2>A title</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisici elit,
-            <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
-            <br>Ut enim ad minim veniam, quis nostrud</p>
-        </div>
-        <div class="col-md-3"> <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
+</div>
+<div class="section" id="dashboard-heroes">
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let hero of heroes" class="col-md-3"> <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
+        <h2>{{hero.name}}</h2>
+        <p>{{hero.description}}</p>
+      </div>
+      <!-- <div class="col-md-3"> <img src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" class="img-responsive">
           <h2>A title</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipisici elit,
             <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
@@ -39,17 +37,16 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipisici elit,
             <br>sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
             <br>Ut enim ad minim veniam, quis nostrud</p>
-        </div>
-      </div>
+        </div> -->
     </div>
   </div>
-  <div class="section text-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4"><a class="btn btn-success">Click me</a></div>
-        <div class="col-md-4"><a class="btn btn-default">Click me</a></div>
-        <div class="col-md-4"><a class="btn btn-primary">Click me</a></div>
-      </div>
+</div>
+<div class="section text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4"><a class="btn btn-success">Click me</a></div>
+      <div class="col-md-4"><a class="btn btn-default">Click me</a></div>
+      <div class="col-md-4"><a class="btn btn-primary">Click me</a></div>
     </div>
   </div>
-</protected>
+</div>

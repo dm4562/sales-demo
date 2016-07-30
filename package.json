@@ -4,7 +4,8 @@
   "scripts": {
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "typings": "typings"
+    "typings": "typings",
+    "postinstall": "typings install && bower install && tsc"
   },
   "license": "ISC",
   "dependencies": {

@@ -1,4 +1,8 @@
 export class Hero {
   id: number;
-  name: String;
+  name: string;
+  power_type: string;
+  power: number;
+  description: string;
+  image_src: string;
 }

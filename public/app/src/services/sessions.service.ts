@@ -103,6 +103,12 @@ export class SessionsService {
           this.loggedIn = false;
           this.locker.remove(this.lockerKey);
           this.emitAuthStatus(null);
+        },
+        (error: Response) => {
+          this.currentUser = null;
+          this.loggedIn = false;
+          this.locker.remove(this.lockerKey);
+          this.emitAuthStatus(null);
         }
       )
     } else {

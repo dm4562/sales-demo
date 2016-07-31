@@ -22,6 +22,8 @@ export class HeroService {
         .toPromise()
         .then(res => res.json().heroes as Hero[])
         .catch(this.handleError);
+    } else {
+      return Promise.reject("not logged in");
     }
   }
 

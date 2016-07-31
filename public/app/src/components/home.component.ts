@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.heroService.getTopHeroes().then(
       (heroes: Hero[]) => this.heroes = heroes
-    );
+    ).catch(error => console.log("couldn't get heroes", error));
   }
 
   validate() {

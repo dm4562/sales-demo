@@ -56,7 +56,14 @@ export class SessionsService {
   }
 
   isLoggedIn() {
-    this.validateToken();
+    if (this.locker.has(this.lockerKey)) {
+      this.currentUser = this.locker.get(this.lockerKey);
+      this.validateToken();
+    } else {
+      this.currentUser = null;
+      this.loggedIn = false;
+      this.emitAuthStatus(null);
+    }
   }
 
   validateToken() {
@@ -90,15 +97,11 @@ export class SessionsService {
       let headers = this.currentUser.authHeaders;
       let options = new RequestOptions({ headers: headers });
       this.http.delete(`${this.url}sign_out`, options).subscribe(
-        (success: Response) => {
+        (res: Response) => {
           console.log("logout successful");
           this.currentUser = null;
           this.loggedIn = false;
           this.locker.remove(this.lockerKey);
-          this.emitAuthStatus(null);
-        },
-        (fail: Response) => {
-          console.log("couldn't log out", fail);
           this.emitAuthStatus(null);
         }
       )

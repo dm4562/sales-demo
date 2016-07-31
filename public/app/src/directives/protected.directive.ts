@@ -20,7 +20,7 @@ export class ProtectedDirective implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.sessions.subscribe(
       val => {
-        if (!val.loggedIn) {
+        if (val.currentUser === (undefined || null)) {
           this.location.replaceState('/');
           this.router.navigateByUrl('/sign_in');
         }

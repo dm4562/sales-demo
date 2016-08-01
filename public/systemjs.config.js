@@ -9,7 +9,7 @@
     '@angular': 'assets/@angular',
     'angular2-in-memory-web-api': 'assets/angular2-in-memory-web-api',
     'rxjs': 'assets/rxjs',
-    'ng2-bootstrap': 'assets/ng2-bootstrap/',
+    // 'ng2-bootstrap': 'assets/ng2-bootstrap/',
     'moment': 'assets/moment',
     'angular2-locker': 'assets/angular2-locker'
   };

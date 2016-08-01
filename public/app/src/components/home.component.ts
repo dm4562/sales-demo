@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { SessionsService } from '../services/sessions.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -14,7 +14,7 @@ import { Hero } from '../models/hero';
   providers: [HeroService]
 })
 
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   private sub: any;
   heroes: Hero[];
 
@@ -25,10 +25,19 @@ export class HomeComponent implements OnInit, OnDestroy {
     private heroService: HeroService
   ) { }
 
-  ngOnInit() {
+  ngAfterViewInit() {
+    console.log("heroes call");
     this.heroService.getTopHeroes().then(
       (heroes: Hero[]) => this.heroes = heroes
     ).catch(error => console.log("couldn't get heroes", error));
+  }
+
+  ngOnInit() {
+    // console.log("oninit");
+  }
+
+  goToAddHero() {
+    this.router.navigateByUrl('/add_hero');
   }
 
   validate() {

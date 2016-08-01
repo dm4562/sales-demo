@@ -25,6 +25,7 @@ export class ProtectedDirective implements OnInit, OnDestroy {
           this.router.navigateByUrl('/sign_in');
         }
       });
+    console.log("authenticating");
     this.sessions.isLoggedIn();
   }
 

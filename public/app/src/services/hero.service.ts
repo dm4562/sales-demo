@@ -22,16 +22,16 @@ export class HeroService {
         .toPromise()
         .then(res => res.json().heroes as Hero[])
         .catch(this.handleError);
-    } else {
-      return Promise.reject("not logged in");
     }
   }
 
   getHeroes() {
-    return this.http.get(this.baseUrl)
-      .toPromise()
-      .then(response => response.json().data as Hero[])
-      .catch(this.handleError);
+    if (this.locker.has('currentUser')) {
+      return this.http.get(this.baseUrl)
+        .toPromise()
+        .then(response => response.json().data as Hero[])
+        .catch(this.handleError);
+    }
   }
 
   // getHeroesSlowly() {

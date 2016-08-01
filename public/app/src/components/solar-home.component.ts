@@ -5,4 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: 'app/templates/solar-home.component.html'
 })
 
-export class SolarHome { }
+export class SolarHomeComponent { }

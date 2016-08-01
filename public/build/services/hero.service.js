@@ -19,6 +19,13 @@ var HeroService = (function () {
         this.locker = locker;
         this.sessions = sessions;
         this.baseUrl = 'http://localhost:3000'; // URL to web API
+        this.powerTypes = [
+            'Cosmic',
+            'Mystic',
+            'Science',
+            'Skill',
+            'Technology'
+        ];
     }
     HeroService.prototype.getTopHeroes = function () {
         if (this.locker.has('currentUser')) {
@@ -37,6 +44,9 @@ var HeroService = (function () {
                 .catch(this.handleError);
         }
     };
+    HeroService.prototype.getPowerTypes = function () {
+        return Promise.resolve(this.powerTypes).then(function (response) { return response; });
+    };
     // getHeroesSlowly() {
     //   return new Promise<Hero[]>(resolve =>
     //     setTimeout(() => resolve(HEROES), 2000)
@@ -47,25 +57,23 @@ var HeroService = (function () {
     };
     HeroService.prototype.handleError = function (error) {
         console.error('An error occurred', error);
+        this.sessions.emitAuthStatus(null);
         return Promise.reject(error.message || error);
     };
     HeroService.prototype.post = function (hero) {
-        var headers = new http_1.Headers({
-            'Content-Type': 'application/json'
-        });
-        return this.http.post(this.baseUrl, JSON.stringify(hero), { headers: headers })
-            .toPromise().then(function (res) { return res.json().data; })
+        var options = new http_1.RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
+        return this.http.post(this.baseUrl + "/heros", JSON.stringify(hero), options)
+            .toPromise().then(function (res) { return res.json().hero; })
             .catch(this.handleError);
     };
     // Update existing Hero
     HeroService.prototype.put = function (hero) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
-        var url = this.baseUrl + "/" + hero.id;
+        var options = new http_1.RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
+        var url = this.baseUrl + "/heros/" + hero.id;
         return this.http
-            .put(url, JSON.stringify(hero), { headers: headers })
+            .put(url, JSON.stringify(hero), options)
             .toPromise()
-            .then(function () { return hero; })
+            .then(function (res) { return res.json().hero; })
             .catch(this.handleError);
     };
     HeroService.prototype.delete = function (hero) {

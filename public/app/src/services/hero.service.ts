@@ -8,6 +8,13 @@ import { Locker } from 'angular2-locker';
 @Injectable()
 export class HeroService {
   private baseUrl = 'http://localhost:3000'; // URL to web API
+  private powerTypes = [
+    'Cosmic',
+    'Mystic',
+    'Science',
+    'Skill',
+    'Technology'
+  ]
 
   constructor(
     private http: Http,
@@ -34,6 +41,12 @@ export class HeroService {
     }
   }
 
+  getPowerTypes() {
+    return Promise.resolve(this.powerTypes).then(
+      response => response as string[]
+    )
+  }
+
   // getHeroesSlowly() {
   //   return new Promise<Hero[]>(resolve =>
   //     setTimeout(() => resolve(HEROES), 2000)
@@ -48,30 +61,26 @@ export class HeroService {
 
   handleError(error: any) {
     console.error('An error occurred', error);
+    this.sessions.emitAuthStatus(null);
     return Promise.reject(error.message || error);
   }
 
   private post(hero: Hero): Promise<Hero> {
-    let headers = new Headers({
-      'Content-Type': 'application/json'
-    });
-
-    return this.http.post(this.baseUrl, JSON.stringify(hero), { headers: headers })
-      .toPromise().then(res => res.json().data)
+    let options = new RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
+    return this.http.post(`${this.baseUrl}/heros`, JSON.stringify(hero), options)
+      .toPromise().then(res => res.json().hero as Hero)
       .catch(this.handleError);
   }
 
   // Update existing Hero
   private put(hero: Hero) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-
-    let url = `${this.baseUrl}/${hero.id}`;
+    let options = new RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
+    let url = `${this.baseUrl}/heros/${hero.id}`;
 
     return this.http
-      .put(url, JSON.stringify(hero), { headers: headers })
+      .put(url, JSON.stringify(hero), options)
       .toPromise()
-      .then(() => hero)
+      .then((res) => res.json().hero as Hero)
       .catch(this.handleError);
   }
 

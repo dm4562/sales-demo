@@ -116,7 +116,7 @@ export class SessionsService {
     }
   }
 
-  private emitAuthStatus(data: any) {
+  emitAuthStatus(data: any) {
     let obj = {
       loggedIn: this.loggedIn,
       currentUser: this.currentUser,

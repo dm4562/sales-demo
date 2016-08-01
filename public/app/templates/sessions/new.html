@@ -4,7 +4,11 @@
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <h1 class="text-left">Sign In</h1>
-        <form role="form">
+        <div class="alert alert-danger alert-dismissable" *ngIf="error">
+          <button contenteditable="false" type="button" class="close" data-dismiss="alert" aria-hidden="true" (click)="toggleError()">×</button>
+          Check your login credentials!
+        </div>
+        <form role="form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
           <div class="form-group">
             <label class="control-label" for="exampleInputEmail1">Email address</label>
             <input class="form-control" id="exampleInputEmail1" placeholder="Enter email" type="email" name="email" required="true" [(ngModel)]="form.email">
@@ -13,7 +17,7 @@
             <label class="control-label" for="exampleInputPassword1">Password</label>
             <input class="form-control" id="exampleInputPassword1" placeholder="Password" type="password" name="password" required="true" [(ngModel)]="form.password">
           </div>
-          <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">Submit</button>
         </form>
       </div>
     </div>

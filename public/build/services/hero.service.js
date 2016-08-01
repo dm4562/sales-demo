@@ -38,7 +38,8 @@ var HeroService = (function () {
     };
     HeroService.prototype.getHeroes = function () {
         if (this.locker.has('currentUser')) {
-            return this.http.get(this.baseUrl)
+            var options = new http_1.RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
+            return this.http.get(this.baseUrl + "/heros", options)
                 .toPromise()
                 .then(function (response) { return response.json().data; })
                 .catch(this.handleError);
@@ -47,11 +48,6 @@ var HeroService = (function () {
     HeroService.prototype.getPowerTypes = function () {
         return Promise.resolve(this.powerTypes).then(function (response) { return response; });
     };
-    // getHeroesSlowly() {
-    //   return new Promise<Hero[]>(resolve =>
-    //     setTimeout(() => resolve(HEROES), 2000)
-    //   );
-    // }
     HeroService.prototype.getHero = function (id) {
         return this.getHeroes().then(function (heroes) { return heroes.find(function (hero) { return hero.id === id; }); });
     };

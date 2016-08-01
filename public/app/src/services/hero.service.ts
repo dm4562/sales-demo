@@ -34,7 +34,8 @@ export class HeroService {
 
   getHeroes() {
     if (this.locker.has('currentUser')) {
-      return this.http.get(this.baseUrl)
+      let options = new RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
+      return this.http.get(`${this.baseUrl}/heros`, options)
         .toPromise()
         .then(response => response.json().data as Hero[])
         .catch(this.handleError);
@@ -46,12 +47,6 @@ export class HeroService {
       response => response as string[]
     )
   }
-
-  // getHeroesSlowly() {
-  //   return new Promise<Hero[]>(resolve =>
-  //     setTimeout(() => resolve(HEROES), 2000)
-  //   );
-  // }
 
   getHero(id: number) {
     return this.getHeroes().then(

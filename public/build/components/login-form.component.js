@@ -20,6 +20,7 @@ var LoginFormComponent = (function () {
         this.router = router;
         this.sub = null;
         this.form = new login_form_1.LoginForm();
+        this.error = false;
     }
     LoginFormComponent.prototype.onSubmit = function () {
         this.sessions.login(this.form);
@@ -31,7 +32,13 @@ var LoginFormComponent = (function () {
                 _this.location.replaceState('/');
                 _this.router.navigateByUrl('/');
             }
+            else {
+                _this.error = true;
+            }
         });
+    };
+    LoginFormComponent.prototype.toggleError = function () {
+        this.error = !this.error;
     };
     LoginFormComponent.prototype.ngOnDestroy = function () {
         this.sub.unsubscribe();

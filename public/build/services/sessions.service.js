@@ -30,7 +30,7 @@ var SessionsService = (function () {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         // console.log("form", body)
-        return this.http.post(this.url + "sign_in", body, options)
+        this.http.post(this.url + "sign_in", body, options)
             .subscribe(function (success) {
             var headers = success.headers;
             _this.currentUser = success.json().data;
@@ -50,6 +50,7 @@ var SessionsService = (function () {
             _this.currentUser = null;
             _this.locker.remove(_this.lockerKey);
             _this.loggedIn = false;
+            _this.emitAuthStatus(null);
         });
     };
     SessionsService.prototype.isLoggedIn = function () {

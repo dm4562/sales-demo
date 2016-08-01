@@ -1,5 +1,5 @@
 import { Component, Input, Output, OnInit, OnDestroy } from '@angular/core';
-import { NgForm } from '@angular/common';
+import { NgForm } from '@angular/forms';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -16,6 +16,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
 
   private sub: any = null;
   @Input() form: LoginForm = new LoginForm();
+  private error = false;
 
   constructor(
     private sessions: SessionsService,
@@ -33,8 +34,14 @@ export class LoginFormComponent implements OnInit, OnDestroy {
         if (val.loggedIn) {
           this.location.replaceState('/');
           this.router.navigateByUrl('/');
+        } else {
+          this.error = true;
         }
       });
+  }
+
+  toggleError() {
+    this.error = !this.error;
   }
 
   ngOnDestroy() {

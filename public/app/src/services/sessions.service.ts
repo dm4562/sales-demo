@@ -30,7 +30,7 @@ export class SessionsService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     // console.log("form", body)
-    return this.http.post(`${this.url}sign_in`, body, options)
+    this.http.post(`${this.url}sign_in`, body, options)
       .subscribe(
       (success: Response) => {
         let headers = success.headers;
@@ -52,6 +52,7 @@ export class SessionsService {
         this.currentUser = null;
         this.locker.remove(this.lockerKey);
         this.loggedIn = false;
+        this.emitAuthStatus(null);
       });
   }
 

@@ -19,19 +19,26 @@ var HeroDetailComponent = (function () {
         this.close = new core_1.EventEmitter();
         this.navigated = false;
     }
+    HeroDetailComponent.prototype.editHero = function () {
+    };
     HeroDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.sub = this.route.params.subscribe(function (params) {
             if (params['id'] !== undefined) {
                 var id = +params['id'];
+                console.log(id);
                 _this.navigated = true;
-                _this.heroService.getHero(id).then(function (hero) { return _this.hero = hero; });
+                _this.heroService.getHero(id).then(function (h) {
+                    _this.hero = h;
+                    console.log(_this.hero);
+                });
             }
             else {
                 _this.navigated = false;
                 _this.hero = new hero_1.Hero();
             }
         });
+        console.log(this.hero);
     };
     HeroDetailComponent.prototype.ngOnDestroy = function () {
         this.sub.unsubscribe();

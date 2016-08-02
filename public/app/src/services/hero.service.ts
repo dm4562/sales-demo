@@ -49,9 +49,13 @@ export class HeroService {
   }
 
   getHero(id: number) {
-    return this.getHeroes().then(
-      (heroes) => heroes.find(hero => hero.id === id)
-    );
+    if (this.locker.has('currentUser')) {
+      let options = new RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
+      return this.http.get(`${this.baseUrl}/heros/${id}`, options)
+        .toPromise()
+        .then(response => response.json().hero as Hero)
+        .catch(this.handleError);
+    }
   }
 
   handleError(error: any) {

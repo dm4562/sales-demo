@@ -1,11 +1,29 @@
 <div *ngIf="hero">
-  <h2>{{hero.name}} details!</h2>
-  <div>
-    <label>id: </label>{{hero.id}}</div>
-  <div>
-    <label>name: </label>
-    <input [(ngModel)]="hero.name" placeholder="name" />
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center">Details<br></h1>
+        </div>
+      </div>
+    </div>
   </div>
-  <button (click)="goBack()">Back</button>
-  <button (click)="save()">Save</button>
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <img src="{{hero.image_src}}" class="center-block img-responsive">
+          <h1>{{hero.name}}</h1>
+          <h3>Rating: {{hero.power}}/100</h3>
+          <h4>Type: {{hero.power_type}}</h4>
+          <p>{{hero.description}}
+          </p>
+          <a class="btn btn-warning" (click)="editHero()">Edit</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 text-center"></div>
+      </div>
+    </div>
+  </div>
 </div>

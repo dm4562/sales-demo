@@ -49,7 +49,13 @@ var HeroService = (function () {
         return Promise.resolve(this.powerTypes).then(function (response) { return response; });
     };
     HeroService.prototype.getHero = function (id) {
-        return this.getHeroes().then(function (heroes) { return heroes.find(function (hero) { return hero.id === id; }); });
+        if (this.locker.has('currentUser')) {
+            var options = new http_1.RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
+            return this.http.get(this.baseUrl + "/heros/" + id, options)
+                .toPromise()
+                .then(function (response) { return response.json().hero; })
+                .catch(this.handleError);
+        }
     };
     HeroService.prototype.handleError = function (error) {
         console.error('An error occurred', error);

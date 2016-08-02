@@ -11,7 +11,7 @@ class HerosController < ApplicationController
 
   # GET /heros/1
   def show
-    render json: @hero
+    render json: { hero: @hero }
   end
 
   # POST /heros

@@ -54,6 +54,9 @@ var HeroesComponent = (function () {
         })
             .catch(function (error) { return _this.error = error; });
     };
+    HeroesComponent.prototype.goToAddHero = function () {
+        this.router.navigateByUrl('/add_hero');
+    };
     HeroesComponent = __decorate([
         core_1.Component({
             selector: 'my-heroes',

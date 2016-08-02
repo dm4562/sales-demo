@@ -10,7 +10,7 @@ import { HeroFormComponent } from './components/hero-form.component';
 const routes: RouterConfig = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
   },
   {
     path: 'heroes',

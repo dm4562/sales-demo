@@ -59,4 +59,8 @@ export class HeroesComponent implements OnInit {
       })
       .catch(error => this.error = error);
   }
+
+  goToAddHero() {
+    this.router.navigateByUrl('/add_hero');
+  }
 }

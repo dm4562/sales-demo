@@ -48,6 +48,10 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.sessions.logout();
   }
 
+  goToHeroList() {
+    this.router.navigateByUrl('/heroes');
+  }
+
   ngOnDestroy() {
 
   }

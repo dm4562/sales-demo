@@ -10,7 +10,7 @@ var hero_form_component_1 = require('./components/hero-form.component');
 var routes = [
     {
         path: '',
-        component: home_component_1.HomeComponent
+        component: home_component_1.HomeComponent,
     },
     {
         path: 'heroes',

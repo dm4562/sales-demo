@@ -38,6 +38,9 @@ var HomeComponent = (function () {
     HomeComponent.prototype.logout = function () {
         this.sessions.logout();
     };
+    HomeComponent.prototype.goToHeroList = function () {
+        this.router.navigateByUrl('/heroes');
+    };
     HomeComponent.prototype.ngOnDestroy = function () {
     };
     HomeComponent = __decorate([

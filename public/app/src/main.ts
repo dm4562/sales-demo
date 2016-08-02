@@ -22,7 +22,7 @@ bootstrap(AppComponent, [
   HTTP_PROVIDERS,
   { provide: LocationStrategy, useClass: HashLocationStrategy },
   provide(LockerConfig, {
-    useValue: new LockerConfig('superheroApp', Locker.DRIVERS.SESSION)
+    useValue: new LockerConfig('superheroApp', Locker.DRIVERS.LOCAL)
   }),
   Locker
 ]);

@@ -16,7 +16,7 @@ platform_browser_dynamic_1.bootstrap(app_component_1.AppComponent, [
     http_1.HTTP_PROVIDERS,
     { provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy },
     core_1.provide(angular2_locker_1.LockerConfig, {
-        useValue: new angular2_locker_1.LockerConfig('superheroApp', angular2_locker_1.Locker.DRIVERS.SESSION)
+        useValue: new angular2_locker_1.LockerConfig('superheroApp', angular2_locker_1.Locker.DRIVERS.LOCAL)
     }),
     angular2_locker_1.Locker
 ]);

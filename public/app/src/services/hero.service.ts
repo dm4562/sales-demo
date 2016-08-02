@@ -37,7 +37,7 @@ export class HeroService {
       let options = new RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
       return this.http.get(`${this.baseUrl}/heros`, options)
         .toPromise()
-        .then(response => response.json().data as Hero[])
+        .then(response => response.json().heroes as Hero[])
         .catch(this.handleError);
     }
   }
@@ -79,14 +79,12 @@ export class HeroService {
       .catch(this.handleError);
   }
 
-  delete(hero: Hero) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-
-    let url = `${this.baseUrl}/${hero.id}`;
+  delete(id: number) {
+    let options = new RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
+    let url = `${this.baseUrl}/heros/${id}`;
 
     return this.http
-      .delete(url, { headers: headers })
+      .delete(url, options)
       .toPromise()
       .catch(this.handleError);
   }

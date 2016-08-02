@@ -27,16 +27,17 @@ export class HeroesComponent implements OnInit {
     this.getHeroes();
   }
 
-  onSelect(hero: Hero) {
-    this.selectedHero = hero;
-  }
-
   getHeroes() {
-    this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+    this.heroService.getHeroes().then(
+      heroes => {
+        console.log(heroes);
+        this.heroes = heroes
+      });
+    console.log(this.heroes);
   }
 
-  goToDetail() {
-    this.router.navigate(['detail', this.selectedHero.id]);
+  goToDetail(id: number) {
+    this.router.navigate(['detail', id]);
   }
 
   addHero() {
@@ -49,14 +50,11 @@ export class HeroesComponent implements OnInit {
     if (savedHero) { this.getHeroes; }
   }
 
-  deleteHero(hero: Hero, event: any) {
-    event.stopPropagation();
+  deleteHero(id: number) {
+    // event.stopPropagation();
     this.heroService
-      .delete(hero)
-      .then(res => {
-        this.heroes = this.heroes.filter(h => h !== hero);
-        if (this.selectedHero === hero) { this.selectedHero = null; }
-      })
+      .delete(id)
+      .then(res => this.getHeroes())
       .catch(error => this.error = error);
   }
 

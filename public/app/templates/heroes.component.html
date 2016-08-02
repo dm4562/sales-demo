@@ -14,14 +14,14 @@
     <div class="row">
       <div class="col-md-12">
         <ul class="media-list">
-          <li class="media">
-            <a class="pull-left" href="#"><img class="media-object" src="http://pingendo.github.io/pingendo-bootstrap/assets/placeholder.png" height="64" width="64"></a>
+          <li class="media" *ngFor="let hero of heroes">
+            <a class="pull-left" href="#"><img class="media-object" src="{{hero.image_src}}" height="64" width="64"></a>
             <div class="btn-group btn-group-vertical pull-right">
-              <a href="#" class="btn btn-default">Edit</a>
-              <a href="#" class="btn btn-danger">Delete</a>
+              <a class="btn btn-default" (click)="goToDetail(hero.id)">Details</a>
+              <a class="btn btn-danger" (click)="deleteHero(hero.id)">Delete</a>
             </div>
             <div class="media-body">
-              <h4 class="media-heading">Media heading</h4>
+              <h4 class="media-heading">{{hero.name}}</h4>
               <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
             </div>
           </li>

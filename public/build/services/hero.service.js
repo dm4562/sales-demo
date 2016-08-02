@@ -41,7 +41,7 @@ var HeroService = (function () {
             var options = new http_1.RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
             return this.http.get(this.baseUrl + "/heros", options)
                 .toPromise()
-                .then(function (response) { return response.json().data; })
+                .then(function (response) { return response.json().heroes; })
                 .catch(this.handleError);
         }
     };
@@ -72,12 +72,11 @@ var HeroService = (function () {
             .then(function (res) { return res.json().hero; })
             .catch(this.handleError);
     };
-    HeroService.prototype.delete = function (hero) {
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
-        var url = this.baseUrl + "/" + hero.id;
+    HeroService.prototype.delete = function (id) {
+        var options = new http_1.RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
+        var url = this.baseUrl + "/heros/" + id;
         return this.http
-            .delete(url, { headers: headers })
+            .delete(url, options)
             .toPromise()
             .catch(this.handleError);
     };

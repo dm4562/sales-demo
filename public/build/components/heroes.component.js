@@ -21,15 +21,16 @@ var HeroesComponent = (function () {
     HeroesComponent.prototype.ngOnInit = function () {
         this.getHeroes();
     };
-    HeroesComponent.prototype.onSelect = function (hero) {
-        this.selectedHero = hero;
-    };
     HeroesComponent.prototype.getHeroes = function () {
         var _this = this;
-        this.heroService.getHeroes().then(function (heroes) { return _this.heroes = heroes; });
+        this.heroService.getHeroes().then(function (heroes) {
+            console.log(heroes);
+            _this.heroes = heroes;
+        });
+        console.log(this.heroes);
     };
-    HeroesComponent.prototype.goToDetail = function () {
-        this.router.navigate(['detail', this.selectedHero.id]);
+    HeroesComponent.prototype.goToDetail = function (id) {
+        this.router.navigate(['detail', id]);
     };
     HeroesComponent.prototype.addHero = function () {
         this.addingHero = true;
@@ -41,17 +42,12 @@ var HeroesComponent = (function () {
             this.getHeroes;
         }
     };
-    HeroesComponent.prototype.deleteHero = function (hero, event) {
+    HeroesComponent.prototype.deleteHero = function (id) {
         var _this = this;
-        event.stopPropagation();
+        // event.stopPropagation();
         this.heroService
-            .delete(hero)
-            .then(function (res) {
-            _this.heroes = _this.heroes.filter(function (h) { return h !== hero; });
-            if (_this.selectedHero === hero) {
-                _this.selectedHero = null;
-            }
-        })
+            .delete(id)
+            .then(function (res) { return _this.getHeroes(); })
             .catch(function (error) { return _this.error = error; });
     };
     HeroesComponent.prototype.goToAddHero = function () {

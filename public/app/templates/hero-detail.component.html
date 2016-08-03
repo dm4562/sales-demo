@@ -31,23 +31,23 @@
             </div>
           </div>
         </div>
-        <br>
-        <div class="alert alert-dismissable alert-success" *ngIf="success">
-          <button contenteditable="false" type="button" class="close" data-dismiss="alert" aria-hidden="true" (click)="toggleSuccess()">×</button>
-          Destination updated
-        </div>
       </div>
     </div>
   </div>
-  <div class="section" *ngIf="showEdit">
+  <br>
+  <div class="section">
     <div class="container">
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
+          <div class="alert alert-success" *ngIf="success">
+            <button contenteditable="false" type="button" class="close" data-dismiss="alert" aria-hidden="true" (click)="toggleSuccess()"></button>
+            Destination updated
+          </div>
           <div class="alert alert-danger alert-dismissable" *ngIf="error">
             <button contenteditable="false" type="button" class="close" data-dismiss="alert" aria-hidden="true" (click)="toggleError()">×</button>
             Destination could not be edited
           </div>
-          <form class="form-horizontal" role="form" (ngSubmit)="editHero()" #heroForm="ngForm">
+          <form class="form-horizontal" role="form" (ngSubmit)="editHero()" #heroForm="ngForm" *ngIf="showEdit">
             <div class="form-group">
               <div class="col-sm-2">
                 <label for="inputEmail3" class="control-label">Name</label>

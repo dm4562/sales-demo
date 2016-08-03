@@ -35,6 +35,11 @@ var HeroService = (function () {
                 .then(function (res) { return res.json().heroes; })
                 .catch(this.handleError);
         }
+        else {
+            return Promise.reject("not logged in")
+                .then()
+                .catch(this.handleError);
+        }
     };
     HeroService.prototype.getHeroes = function () {
         if (this.locker.has('currentUser')) {
@@ -42,6 +47,11 @@ var HeroService = (function () {
             return this.http.get(this.baseUrl + "/heros", options)
                 .toPromise()
                 .then(function (response) { return response.json().heroes; })
+                .catch(this.handleError);
+        }
+        else {
+            return Promise.reject("not logged in")
+                .then()
                 .catch(this.handleError);
         }
     };
@@ -54,6 +64,11 @@ var HeroService = (function () {
             return this.http.get(this.baseUrl + "/heros/" + id, options)
                 .toPromise()
                 .then(function (response) { return response.json().hero; })
+                .catch(this.handleError);
+        }
+        else {
+            return Promise.reject("not logged in")
+                .then()
                 .catch(this.handleError);
         }
     };

@@ -1,29 +1,93 @@
-<div *ngIf="hero">
-  <div class="section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class="text-center">Details<br></h1>
+<protected>
+  <div *ngIf="hero">
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="text-center">Details<br></h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <img src="{{hero.image_src}}" class="center-block img-responsive">
+            <h1>{{hero.name}}</h1>
+            <h3>Rating: {{hero.power}}/100</h3>
+            <h4>Type: {{hero.power_type}}</h4>
+            <p>{{hero.description}}</p>
+            <a class="btn btn-warning" (click)="editHero()">Edit</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center"></div>
         </div>
       </div>
     </div>
   </div>
-  <div class="section">
+  <div class="section" *ngIf="hero">
     <div class="container">
       <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <img src="{{hero.image_src}}" class="center-block img-responsive">
-          <h1>{{hero.name}}</h1>
-          <h3>Rating: {{hero.power}}/100</h3>
-          <h4>Type: {{hero.power_type}}</h4>
-          <p>{{hero.description}}
-          </p>
-          <a class="btn btn-warning" (click)="editHero()">Edit</a>
+        <div class="col-md-8 col-md-offset-2">
+          <div class="alert alert-danger alert-dismissable" *ngIf="error">
+            <button contenteditable="false" type="button" class="close" data-dismiss="alert" aria-hidden="true" (click)="toggleError()">×</button>
+            Hero could not be edited
+          </div>
+          <form class="form-horizontal" role="form" (ngSubmit)="editHero()" #heroForm="ngForm">
+            <div class="form-group">
+              <div class="col-sm-2">
+                <label for="inputEmail3" class="control-label">Name</label>
+              </div>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputEmail3" placeholder="Name" required [(ngModel)]="hero.name" name="name">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-2">
+                <label class="control-label">Power Type</label>
+              </div>
+              <div class="col-sm-10">
+                <select class="form-control" [(ngModel)]="hero.power_type" name="power_type">
+                  <option *ngFor="let power of powerTypes">{{power}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-2">
+                <label class="control-label">Power</label>
+              </div>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" placeholder="84" min="1" max="100" required [(ngModel)]="hero.power" name="power">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-2">
+                <label class="control-label">Description</label>
+              </div>
+              <div class="col-sm-10">
+                <textarea class="form-control" required [(ngModel)]="hero.description" name="description"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-2">
+                <label class="control-label">Source</label>
+              </div>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" [(ngModel)]="hero.image_src" name="image_src">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Add
+                  <br>
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12 text-center"></div>
       </div>
     </div>
   </div>
-</div>
+</protected>

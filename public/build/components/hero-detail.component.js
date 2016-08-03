@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var hero_1 = require('../models/hero');
 var router_1 = require('@angular/router');
 var hero_service_1 = require('../services/hero.service');
+var protected_directive_1 = require('../directives/protected.directive');
 var HeroDetailComponent = (function () {
     function HeroDetailComponent(heroService, route) {
         this.heroService = heroService;
@@ -26,11 +27,11 @@ var HeroDetailComponent = (function () {
         this.sub = this.route.params.subscribe(function (params) {
             if (params['id'] !== undefined) {
                 var id = +params['id'];
-                console.log(id);
+                // console.log(id);
                 _this.navigated = true;
                 _this.heroService.getHero(id).then(function (h) {
                     _this.hero = h;
-                    console.log(_this.hero);
+                    // console.log(this.hero);
                 });
             }
             else {
@@ -38,7 +39,7 @@ var HeroDetailComponent = (function () {
                 _this.hero = new hero_1.Hero();
             }
         });
-        console.log(this.hero);
+        // console.log(this.hero);
     };
     HeroDetailComponent.prototype.ngOnDestroy = function () {
         this.sub.unsubscribe();
@@ -69,7 +70,8 @@ var HeroDetailComponent = (function () {
         core_1.Component({
             selector: 'my-hero-detail',
             templateUrl: 'app/templates/hero-detail.component.html',
-            styleUrls: ['app/styles/hero-detail.component.css']
+            styleUrls: ['app/styles/hero-detail.component.css'],
+            directives: [protected_directive_1.ProtectedDirective]
         }), 
         __metadata('design:paramtypes', [hero_service_1.HeroService, router_1.ActivatedRoute])
     ], HeroDetailComponent);

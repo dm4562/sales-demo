@@ -1,90 +1,91 @@
-<protected></protected>
-<div class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <h1>Add your hero
+<protected>
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h1>Add your hero
           <br>
           <br>
         </h1>
-        <div class="alert alert-dismissable alert-success" *ngIf="success">
-          <button contenteditable="false" type="button" class="close" data-dismiss="alert" aria-hidden="true" (click)="toggleSuccess()">×</button>
-          Hero added successfully
-        </div>
-        <div class="alert alert-danger alert-dismissable" *ngIf="error">
-          <button contenteditable="false" type="button" class="close" data-dismiss="alert" aria-hidden="true" (click)="toggleError()">×</button>
-          Hero could not be added
-        </div>
-        <form class="form-horizontal" role="form" (ngSubmit)="addHero()" #heroForm="ngForm">
-          <div class="form-group">
-            <div class="col-sm-2">
-              <label for="inputEmail3" class="control-label">Name</label>
-            </div>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputEmail3" placeholder="Name" required [(ngModel)]="newHero.name" name="name">
-            </div>
+          <div class="alert alert-dismissable alert-success" *ngIf="success">
+            <button contenteditable="false" type="button" class="close" data-dismiss="alert" aria-hidden="true" (click)="toggleSuccess()">×</button>
+            Hero added successfully
           </div>
-          <div class="form-group">
-            <div class="col-sm-2">
-              <label class="control-label">Power Type</label>
-            </div>
-            <div class="col-sm-10">
-              <select class="form-control" [(ngModel)]="newHero.power_type" name="power_type">
-                <option *ngFor="let power of powerTypes">{{power}}</option>
-              </select>
-            </div>
+          <div class="alert alert-danger alert-dismissable" *ngIf="error">
+            <button contenteditable="false" type="button" class="close" data-dismiss="alert" aria-hidden="true" (click)="toggleError()">×</button>
+            Hero could not be added
           </div>
-          <div class="form-group">
-            <div class="col-sm-2">
-              <label class="control-label">Power</label>
-            </div>
-            <div class="col-sm-10">
-              <input type="number" class="form-control" placeholder="84" min="1" max="100" required [(ngModel)]="newHero.power" name="power">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-2">
-              <label class="control-label">Description</label>
-            </div>
-            <div class="col-sm-10">
-              <textarea class="form-control" required [(ngModel)]="newHero.description" name="description"></textarea>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-2">
-              <label class="control-label">Image Source</label>
-            </div>
-            <div class="col-sm-10">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="boolean" [(ngModel)]="image">
-                  <div *ngIf="image">
-                    Yes I have a source
-                  </div>
-                  <div *ngIf="!image">
-                    I don't have a source
-                  </div>
-                </label>
+          <form class="form-horizontal" role="form" (ngSubmit)="addHero()" #heroForm="ngForm">
+            <div class="form-group">
+              <div class="col-sm-2">
+                <label for="inputEmail3" class="control-label">Name</label>
+              </div>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputEmail3" placeholder="Name" required [(ngModel)]="newHero.name" name="name">
               </div>
             </div>
-          </div>
-          <div class="form-group" *ngIf="image">
-            <div class="col-sm-2">
-              <label class="control-label">Source</label>
+            <div class="form-group">
+              <div class="col-sm-2">
+                <label class="control-label">Power Type</label>
+              </div>
+              <div class="col-sm-10">
+                <select class="form-control" [(ngModel)]="newHero.power_type" name="power_type">
+                  <option *ngFor="let power of powerTypes">{{power}}</option>
+                </select>
+              </div>
             </div>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" [(ngModel)]="newHero.image_src" name="image_src">
+            <div class="form-group">
+              <div class="col-sm-2">
+                <label class="control-label">Power</label>
+              </div>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" placeholder="84" min="1" max="100" required [(ngModel)]="newHero.power" name="power">
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Add
-                <br>
-              </button>
+            <div class="form-group">
+              <div class="col-sm-2">
+                <label class="control-label">Description</label>
+              </div>
+              <div class="col-sm-10">
+                <textarea class="form-control" required [(ngModel)]="newHero.description" name="description"></textarea>
+              </div>
             </div>
-          </div>
-        </form>
+            <div class="form-group">
+              <div class="col-sm-2">
+                <label class="control-label">Image Source</label>
+              </div>
+              <div class="col-sm-10">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="boolean" [(ngModel)]="image">
+                    <div *ngIf="image">
+                      Yes I have a source
+                    </div>
+                    <div *ngIf="!image">
+                      I don't have a source
+                    </div>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group" *ngIf="image">
+              <div class="col-sm-2">
+                <label class="control-label">Source</label>
+              </div>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" [(ngModel)]="newHero.image_src" name="image_src">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Add
+                  <br>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</protected>

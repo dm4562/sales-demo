@@ -29,6 +29,10 @@ export class HeroService {
         .toPromise()
         .then(res => res.json().heroes as Hero[])
         .catch(this.handleError);
+    } else {
+      return Promise.reject("not logged in")
+        .then()
+        .catch(this.handleError);
     }
   }
 
@@ -38,6 +42,10 @@ export class HeroService {
       return this.http.get(`${this.baseUrl}/heros`, options)
         .toPromise()
         .then(response => response.json().heroes as Hero[])
+        .catch(this.handleError);
+    } else {
+      return Promise.reject("not logged in")
+        .then()
         .catch(this.handleError);
     }
   }
@@ -54,6 +62,10 @@ export class HeroService {
       return this.http.get(`${this.baseUrl}/heros/${id}`, options)
         .toPromise()
         .then(response => response.json().hero as Hero)
+        .catch(this.handleError);
+    } else {
+      return Promise.reject("not logged in")
+        .then()
         .catch(this.handleError);
     }
   }

@@ -1,35 +1,37 @@
-<div class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h1 class="text-center">Your destinations
+<protected>
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center">Your destinations
               <br>
             </h1>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="section">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <ul class="media-list">
-          <li class="media" *ngFor="let hero of heroes">
-            <a class="pull-left" href="#"><img class="media-object" src="{{hero.image_src}}" height="64" width="64"></a>
-            <div class="btn-group btn-group-vertical pull-right">
-              <a class="btn btn-default" (click)="goToDetail(hero.id)">Details</a>
-              <a class="btn btn-danger" (click)="deleteHero(hero.id)">Delete</a>
-            </div>
-            <div class="media-body">
-              <h4 class="media-heading">{{hero.name}}</h4>
-              <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
-            </div>
-          </li>
-        </ul>
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="media-list">
+            <li class="media" *ngFor="let hero of heroes">
+              <a class="pull-left" href="#"><img class="media-object" src="{{hero.image_src}}" height="64" width="64"></a>
+              <div class="btn-group btn-group-vertical pull-right">
+                <a class="btn btn-default" (click)="goToDetail(hero.id)">Details</a>
+                <a class="btn btn-danger" (click)="deleteHero(hero.id)">Delete</a>
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">{{hero.name}}</h4>
+                <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-12 text-center">
+        <a class="btn btn-success" (click)="goToAddHero()">Add another destination</a>
       </div>
     </div>
-    <div class="col-md-12 text-center">
-      <a class="btn btn-success" (click)="goToAddHero()">Add another destination</a>
-    </div>
   </div>
-</div>
+</protected>

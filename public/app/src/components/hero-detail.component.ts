@@ -15,9 +15,12 @@ import { ProtectedDirective } from '../directives/protected.directive';
 export class HeroDetailComponent implements OnInit, OnDestroy {
   @Input() hero: Hero;
   @Output() close = new EventEmitter();
-  error: any;
+  error: boolean = false;
   sub: any;
   navigated: boolean = false;
+  showEdit = false;
+  powerTypes: string[];
+  success = false;
 
   constructor(
     private heroService: HeroService,
@@ -25,7 +28,39 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
   ) { }
 
   editHero() {
+    this.heroService.save(this.hero).then(
+      (success) => {
+        this.success = true;
+        this.showEdit = false;
+      },
+      (failure) => {
+        this.error = true;
+        this.showEdit = true;
+      }
+    )
+  }
 
+  deleteHero() {
+    this.heroService.delete(this.hero.id).then(
+      success => {
+        this.goBack();
+      },
+      error => {
+        console.log("hero could not be deleted");
+      }
+    )
+  }
+
+  toggleForm() {
+    this.showEdit = !this.showEdit;
+  }
+
+  toggleSuccess() {
+    this.success = !this.success;
+  }
+
+  toggleError() {
+    this.error = !this.error;
   }
 
   ngOnInit() {
@@ -44,21 +79,17 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
         this.hero = new Hero();
       }
     });
+    this.heroService.getPowerTypes().then(
+      (success) => {
+        this.powerTypes = success;
+      },
+      (failure) => console.log("Couldnt get types")
+    );
     // console.log(this.hero);
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-  }
-
-  save() {
-    this.heroService.save(this.hero).then(
-      (hero) => {
-        this.hero = hero;
-        this.goBack(hero);
-      }).catch(
-      (error) => this.error = error
-      );
   }
 
   goBack(savedHero: Hero = null) {

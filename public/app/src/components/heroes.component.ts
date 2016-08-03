@@ -1,14 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../models/hero';
+import { Router } from '@angular/router';
+
 import { HeroDetailComponent } from './hero-detail.component';
 import { HeroService } from '../services/hero.service';
-import { Router } from '@angular/router';
+import { ProtectedDirective } from '../directives/protected.directive';
 
 @Component({
   selector: 'my-heroes',
   templateUrl: 'app/templates/heroes.component.html',
   styleUrls: ['app/styles/heroes.component.css'],
-  directives: [HeroDetailComponent]
+  directives: [
+    HeroDetailComponent,
+    ProtectedDirective
+  ]
 })
 
 export class HeroesComponent implements OnInit {

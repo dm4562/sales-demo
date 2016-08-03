@@ -9,7 +9,7 @@
     "removeComments": false,
     "noImplicitAny": false,
     "rootDir": "public/app/src",
-    "outDir": "public/build"
+    "outDir": "public/app/build"
   },
   "exclude": [
     "node_modules",

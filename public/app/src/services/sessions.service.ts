@@ -3,6 +3,7 @@ import { Headers, Http, RequestOptions, Response, RequestOptionsArgs } from '@an
 
 import { LoginForm } from '../models/login-form';
 import { User } from '../models/user';
+import { NewPassword } from '../models/new-password';
 
 import { Locker } from 'angular2-locker';
 
@@ -48,7 +49,7 @@ export class SessionsService {
         console.log("user", this.currentUser);
       },
       (fail: Response) => {
-        console.log('login failed', fail);
+        console.log('login failed');
         this.currentUser = null;
         this.locker.remove(this.lockerKey);
         this.loggedIn = false;
@@ -81,7 +82,7 @@ export class SessionsService {
           this.loggedIn = false;
           this.currentUser = null;
           this.locker.remove(this.lockerKey);
-          console.log("could not validate token", fail);
+          console.log("could not validate token");
           this.emitAuthStatus(null);
         });
     } else {
@@ -125,6 +126,41 @@ export class SessionsService {
     };
     this.statusEmitter.emit(obj);
     // console.log("emit", obj);
+  }
+
+  updateProfile(user: User, currentPassword: string, newPassword?: NewPassword) {
+    let options = new RequestOptions({ headers: this.currentUser.authHeaders });
+    let params: any;
+    if (newPassword) {
+      params = {
+        email: user.email,
+        name: user.name,
+        nickname: user.nickname,
+        current_password: currentPassword,
+        password: newPassword.password,
+        password_confirmation: newPassword.confirmation
+      }
+    } else {
+      params = {
+        email: user.email,
+        name: user.name,
+        nickname: user.nickname,
+        current_password: currentPassword
+      }
+    }
+    this.http.put(`${this.url}`, JSON.stringify(params), options)
+      .toPromise()
+      .then(
+      (success) => {
+        this.currentUser = success.json().data;
+        this.locker.set(this.lockerKey, this.currentUser);
+        this.emitAuthStatus("success");
+      },
+      (failure) => {
+        this.emitAuthStatus(null);
+        console.log("profile couldnt be updated");
+        this.emitAuthStatus("failure");
+      });
   }
 
   public subscribe(onNext: (value: any) => void, onThrow?: (exception: any) => void, onReturn?: () => void) {

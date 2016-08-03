@@ -6,6 +6,7 @@ import { LoginFormComponent } from './components/login-form.component';
 import { HomeComponent } from './components/home.component';
 import { SolarHomeComponent } from './components/solar-home.component';
 import { HeroFormComponent } from './components/hero-form.component';
+import { ProfileComponent } from './components/profile.component';
 
 const routes: RouterConfig = [
   {
@@ -29,8 +30,8 @@ const routes: RouterConfig = [
     component: LoginFormComponent
   },
   {
-    path: 'solar_home',
-    component: SolarHomeComponent
+    path: 'profile',
+    component: ProfileComponent
   },
   {
     path: 'add_hero',

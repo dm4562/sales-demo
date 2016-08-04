@@ -7,7 +7,6 @@ import { ProtectedDirective } from '../directives/protected.directive';
 @Component({
   selector: 'my-hero-detail',
   templateUrl: 'app/templates/hero-detail.component.html',
-  styleUrls: ['app/styles/hero-detail.component.css'],
   directives: [ProtectedDirective]
 })
 

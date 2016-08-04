@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { ProtectedDirective } from '../directives/protected.directive';
 import { HeroService } from '../services/hero.service';
 import { Hero } from '../models/hero';
+import { User } from '../models/user';
 
 @Component({
   selector: 'home',
@@ -17,12 +18,13 @@ import { Hero } from '../models/hero';
 export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   private sub: any;
   heroes: Hero[];
+  private currentUser: User;
 
   constructor(
     private sessions: SessionsService,
     private router: Router,
     private location: Location,
-    private heroService: HeroService
+    private heroService: HeroService,
   ) { }
 
   ngAfterViewInit() {
@@ -30,6 +32,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     this.heroService.getTopHeroes().then(
       (heroes: Hero[]) => this.heroes = heroes
     ).catch(error => console.log("couldn't get heroes", error));
+
+    this.currentUser = this.sessions.getCurrentUser();
   }
 
   ngOnInit() {

@@ -9,7 +9,6 @@ import { SessionsService } from '../services/sessions.service';
 @Component({
   selector: 'login-form',
   templateUrl: 'app/templates/sessions/new.html',
-  styleUrls: ['app/styles/login-form.component.scss']
 })
 
 export class LoginFormComponent implements OnInit, OnDestroy {

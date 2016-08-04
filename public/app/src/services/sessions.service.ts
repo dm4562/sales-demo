@@ -91,7 +91,11 @@ export class SessionsService {
   }
 
   getCurrentUser() {
-    return this.currentUser;
+    if (this.locker.has('currentUser')) {
+      return this.locker.get('currentUser');
+    } else {
+      return null;
+    }
   }
 
   logout() {

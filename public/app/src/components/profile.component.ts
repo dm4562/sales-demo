@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { Locker } from 'angular2-locker';
-
 import { ProtectedDirective } from '../directives/protected.directive';
 import { User } from '../models/user';
 import { NewPassword } from '../models/new-password';
@@ -28,8 +26,7 @@ export class ProfileComponent implements OnInit {
   private success = false;
 
   constructor(
-    private sessions: SessionsService,
-    private locker: Locker
+    private sessions: SessionsService
   ) { }
 
   toggleSuccess() {
@@ -45,16 +42,15 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.locker.has("currentUser")) {
-      this.currentUser = this.locker.get("currentUser");
-    } else {
+    this.currentUser = this.sessions.getCurrentUser();
+    if (!this.currentUser) {
       this.sessions.emitAuthStatus(null);
     }
     this.sub = this.sessions.subscribe(
       (val) => {
         if (val.data === 'success') {
           this.success = true;
-          this.currentUser = this.locker.get("currentUser");
+          this.currentUser = this.sessions.getCurrentUser();
           this.error = false;
           let form;
           if (this.changePassword) {

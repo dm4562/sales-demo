@@ -3,12 +3,12 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 
 import { HeroService } from '../services/hero.service';
 import { SessionsService } from '../services/sessions.service';
+import { User } from '../models/user';
 import '../rxjs-extensions';
 
 @Component({
   selector: 'my-app',
   templateUrl: 'app/templates/app.component.html',
-  styleUrls: ['app/styles/app.component.css'],
   directives: [ROUTER_DIRECTIVES],
   providers: [
     HeroService,
@@ -18,14 +18,16 @@ import '../rxjs-extensions';
 
 export class AppComponent implements AfterViewInit {
   @Input() private contentLoaded: boolean = false;
-  title = 'Tour of Heroes';
+  private currentUser: User;
 
-  constructor(private sessions: SessionsService) { }
+  constructor(
+    private sessions: SessionsService,
+  ) { }
 
   logout() {
     this.sessions.logout();
   }
+
   ngAfterViewInit() {
-    this.contentLoaded = true;
   }
 }

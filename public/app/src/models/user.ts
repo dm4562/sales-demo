@@ -8,6 +8,7 @@ export class User {
   name: string;
   nickname: string;
   image: any;
+  admin: boolean;
 
   authHeaders: Headers;
 }

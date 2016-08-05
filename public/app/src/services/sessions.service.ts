@@ -44,7 +44,8 @@ export class SessionsService {
           'expiry': headers.get('expiry')
         });
         this.loggedIn = true;
-        this.locker.set(this.lockerKey, JSON.stringify(this.currentUser));
+        console.log("sessions user", this.currentUser);
+        this.locker.set(this.lockerKey, (this.currentUser));
         this.emitAuthStatus(null);
         console.log("user", this.currentUser);
       },

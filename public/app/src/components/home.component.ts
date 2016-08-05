@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     private sessions: SessionsService,
     private router: Router,
     private location: Location,
-    private heroService: HeroService,
+    private heroService: HeroService
   ) { }
 
   ngAfterViewInit() {

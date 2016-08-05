@@ -38,11 +38,11 @@ export class SessionsService {
         this.currentUser = success.json().data;
         this.currentUser.authHeaders = {
           'Content-Type': 'application/json',
-          'Access-token': headers.get('Access-token'),
+          'Access-Token': headers.get('Access-Token'),
           'Client': headers.get('Client'),
           'Uid': headers.get('Uid'),
           'Expiry': headers.get('Expiry'),
-          'Token-type': headers.get('Token-type')
+          'Token-Type': headers.get('Token-Type')
         };
         this.loggedIn = true;
         console.log("sessions user", this.currentUser);

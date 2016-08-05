@@ -36,11 +36,11 @@ DeviseTokenAuth.setup do |config|
 
   # Makes it possible to change the headers names
   config.headers_names = {
-    :'access-token' => 'Access-token',
+    :'access-token' => 'Access-Token',
     :'client' => 'Client',
     :'expiry' => 'Expiry',
     :'uid' => 'Uid',
-    :'token-type' => 'Token-type'
+    :'token-type' => 'Token-Type'
   }
 
   # By default, only Bearer Token authentication is implemented out of the box.

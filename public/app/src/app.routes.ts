@@ -5,7 +5,6 @@ import { DashboardComponent } from './components/dashboard.component';
 import { HeroDetailComponent } from './components/hero-detail.component';
 import { LoginFormComponent } from './components/login-form.component';
 import { HomeComponent } from './components/home.component';
-import { SolarHomeComponent } from './components/solar-home.component';
 import { HeroFormComponent } from './components/hero-form.component';
 import { ProfileComponent } from './components/profile.component';
 import { AllDestinationsComponent } from './components/all-destinations.component';

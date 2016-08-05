@@ -2,7 +2,6 @@
 import { XHRBackend } from '@angular/http';
 
 import { InMemoryBackendService, SEED_DATA } from 'angular2-in-memory-web-api';
-import { InMemoryDataService } from './services/in-memory-data.service';
 import { Locker, LockerConfig } from 'angular2-locker'
 
 // The usual bootstrapping imports

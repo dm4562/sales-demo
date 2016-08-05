@@ -36,13 +36,13 @@ export class SessionsService {
       (success: Response) => {
         let headers = success.headers;
         this.currentUser = success.json().data;
-        this.currentUser.authHeaders = new Headers({
+        this.currentUser.authHeaders = {
           'Content-Type': 'application/json',
           'access-token': headers.get('access-token'),
           'client': headers.get('client'),
           'uid': headers.get('uid'),
           'expiry': headers.get('expiry')
-        });
+        };
         this.loggedIn = true;
         console.log("sessions user", this.currentUser);
         this.locker.set(this.lockerKey, (this.currentUser));
@@ -71,7 +71,7 @@ export class SessionsService {
 
   validateToken() {
     if (this.currentUser !== null) {
-      let headers = this.currentUser.authHeaders;
+      let headers = new Headers(this.currentUser.authHeaders);
       let options = new RequestOptions({ headers: headers });
       return this.http.get(`${this.url}validate_token`, options).subscribe(
         (success: Response) => {
@@ -104,7 +104,7 @@ export class SessionsService {
 
   logout() {
     if (this.currentUser !== null) {
-      let headers = this.currentUser.authHeaders;
+      let headers = new Headers(this.currentUser.authHeaders);
       let options = new RequestOptions({ headers: headers });
       this.http.delete(`${this.url}sign_out`, options).subscribe(
         (res: Response) => {
@@ -137,7 +137,8 @@ export class SessionsService {
   }
 
   updateProfile(user: User, currentPassword: string, newPassword?: NewPassword) {
-    let options = new RequestOptions({ headers: this.currentUser.authHeaders });
+    let headers = new Headers(this.currentUser.authHeaders);
+    let options = new RequestOptions({ headers: headers });
     let params: any;
     if (newPassword) {
       params = {

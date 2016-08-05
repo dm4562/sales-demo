@@ -1,5 +1,3 @@
-import { Headers } from '@angular/http';
-
 export class User {
   id: number;
   email: string;
@@ -10,5 +8,5 @@ export class User {
   image: any;
   admin: boolean;
 
-  authHeaders: Headers;
+  authHeaders: any;
 }

@@ -12,7 +12,7 @@ import { enableProdMode, provide } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { AppComponent } from './components/app.component';
 import { appRouterProviders } from './app.routes';
-// enableProdMode();
+enableProdMode();
 
 bootstrap(AppComponent, [
   disableDeprecatedForms(),

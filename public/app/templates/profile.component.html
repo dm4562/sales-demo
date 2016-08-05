@@ -16,7 +16,7 @@
           <div class="page-header">
             <h1>Profile</h1>
           </div>
-          <form class="form-horizontal" role="form" #profileForm="ngForm" (ngSubmit)="updateProfile()">
+          <form class="form-horizontal" role="form" #profileForm="ngForm" (ngSubmit)="updateProfile()" *ngIf="currentUser">
             <div class="form-group">
               <div class="col-sm-3">
                 <label for="inputEmail3" class="control-label">Email</label>

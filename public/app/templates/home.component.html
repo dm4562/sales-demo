@@ -1,34 +1,33 @@
 <protected>
-  <div class="cover">
-    <div class="cover-image"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
+  <navbar-pills></navbar-pills>
+  <div class="jumbotron ">
+    <div class="cover-image "></div>
+    <div class="container ">
+      <div class="row ">
+        <div class="col-md-12 text-center ">
           <h1>Destinations</h1>
           <p>List places you've ever been to.
             <br>
           </p>
           <br>
-          <br><a class="btn btn-lg btn-primary" href="#/">View</a> </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="section" id="dashboard-heroes">
-    <div class="container">
-      <div class="row">
-        <div *ngFor="let hero of heroes" class="col-md-3"> <img src="{{hero.image_src}}" class="img-responsive">
+  <div class="section " id="dashboard-heroes ">
+    <div class="container ">
+      <div class="row ">
+        <div *ngFor="let hero of heroes " class="col-md-3 "> <img src="{{hero.image_src}} " class="img-responsive ">
           <h2>{{hero.name}}</h2>
           <p>{{hero.description}}</p>
         </div>
       </div>
     </div>
   </div>
-  <div class="section text-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4"><a class="btn btn-info" (click)="goToHeroList()">View your destinations</a></div>
-        <div class="col-md-4"><a class="btn btn-success" (click)="goToAddHero()">Add another destination</a></div>
-        <div class="col-md-4"><a target="_blank" href="http://www.useriq.com" class="btn btn-default">Learn more about UserIQ</a></div>
+  <div class="section text-center ">
+    <div class="container ">
+      <div class="row ">
+        <div class="col-md-4 col-md-offset-4"><a target="_blank " href="http://www.useriq.com " class="btn btn-default">Learn more about UserIQ</a></div>
       </div>
     </div>
   </div>

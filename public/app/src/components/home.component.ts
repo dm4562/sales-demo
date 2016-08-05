@@ -7,11 +7,12 @@ import { ProtectedDirective } from '../directives/protected.directive';
 import { HeroService } from '../services/hero.service';
 import { Hero } from '../models/hero';
 import { User } from '../models/user';
+import { NavbarComponent } from './navbar.component';
 
 @Component({
   selector: 'home',
   templateUrl: 'app/templates/home.component.html',
-  directives: [ProtectedDirective],
+  directives: [ProtectedDirective, NavbarComponent],
   providers: [HeroService]
 })
 

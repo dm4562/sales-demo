@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { Hero } from '../models/hero';
 import { Router } from '@angular/router';
 
-import { HeroDetailComponent } from './hero-detail.component';
 import { HeroService } from '../services/hero.service';
 import { ProtectedDirective } from '../directives/protected.directive';
+import { NavbarComponent } from './navbar.component';
 
 @Component({
   selector: 'my-heroes',
   templateUrl: 'app/templates/heroes.component.html',
   directives: [
-    HeroDetailComponent,
-    ProtectedDirective
+    ProtectedDirective,
+    NavbarComponent
   ]
 })
 

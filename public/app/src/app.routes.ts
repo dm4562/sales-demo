@@ -1,4 +1,5 @@
 import { provideRouter, RouterConfig } from '@angular/router';
+
 import { HeroesComponent } from './components/heroes.component';
 import { DashboardComponent } from './components/dashboard.component';
 import { HeroDetailComponent } from './components/hero-detail.component';
@@ -7,11 +8,17 @@ import { HomeComponent } from './components/home.component';
 import { SolarHomeComponent } from './components/solar-home.component';
 import { HeroFormComponent } from './components/hero-form.component';
 import { ProfileComponent } from './components/profile.component';
+import { AllDestinationsComponent } from './components/all-destinations.component';
 
 const routes: RouterConfig = [
   {
     path: '',
-    component: HomeComponent,
+    pathMatch: 'full',
+    redirectTo: 'home',
+  },
+  {
+    path: 'home',
+    component: HomeComponent
   },
   {
     path: 'heroes',
@@ -36,6 +43,10 @@ const routes: RouterConfig = [
   {
     path: 'add_hero',
     component: HeroFormComponent
+  },
+  {
+    path: 'all_destinations',
+    component: AllDestinationsComponent
   }
 ];
 

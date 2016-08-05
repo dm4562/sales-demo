@@ -1,13 +1,15 @@
 import { Component, EventEmitter, Input, Output, OnInit, OnDestroy } from '@angular/core';
-import { Hero } from '../models/hero';
 import { ActivatedRoute } from '@angular/router';
+
+import { Hero } from '../models/hero';
 import { HeroService } from '../services/hero.service';
 import { ProtectedDirective } from '../directives/protected.directive';
+import { NavbarComponent } from './navbar.component';
 
 @Component({
   selector: 'my-hero-detail',
   templateUrl: 'app/templates/hero-detail.component.html',
-  directives: [ProtectedDirective]
+  directives: [ProtectedDirective, NavbarComponent]
 })
 
 

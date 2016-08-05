@@ -1,5 +1,6 @@
-import { Component, AfterViewInit, Input } from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import { Component, OnInit, Input, AfterViewChecked, AfterContentInit } from '@angular/core';
+import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { HeroService } from '../services/hero.service';
 import { SessionsService } from '../services/sessions.service';
@@ -16,18 +17,40 @@ import '../rxjs-extensions';
   ]
 })
 
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit, AfterViewChecked, AfterContentInit {
   @Input() private contentLoaded: boolean = false;
-  private currentUser: User;
+  // private currentUser: User;
+  private sub: any;
 
   constructor(
     private sessions: SessionsService,
+    private router: Router,
+    private location: Location,
+    private route: ActivatedRoute
   ) { }
 
   logout() {
     this.sessions.logout();
   }
 
-  ngAfterViewInit() {
+  ngOnInit() {
+    this.route.url.subscribe(
+      (url) => {
+        console.log(url);
+      }
+    )
+    // console.log(this.route.snapshot.toString())
+    // console.log(this.location.path);
+    // console.log(this.router.url);
   }
+
+  ngAfterViewChecked() {
+    // router.urlTree.contains(router.createUrlTree(['/login']))
+    // console.log(this.route.snapshot.toString());
+  }
+
+  ngAfterContentInit() {
+    // console.log("lol", this.route.snapshot.toString());
+  }
+
 }

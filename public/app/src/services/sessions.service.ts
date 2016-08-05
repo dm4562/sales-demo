@@ -94,6 +94,9 @@ export class SessionsService {
     if (this.locker.has('currentUser')) {
       return this.locker.get('currentUser');
     } else {
+      this.loggedIn = false;
+      this.currentUser = null;
+      this.emitAuthStatus(null);
       return null;
     }
   }

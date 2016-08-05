@@ -4,11 +4,12 @@ import { NgForm } from '@angular/forms';
 import { ProtectedDirective } from '../directives/protected.directive';
 import { Hero } from '../models/hero';
 import { HeroService } from '../services/hero.service';
+import { NavbarComponent } from './navbar.component';
 
 @Component({
   selector: 'hero-form',
   templateUrl: 'app/templates/hero-form.component.html',
-  directives: [ProtectedDirective]
+  directives: [ProtectedDirective, NavbarComponent]
 })
 
 export class HeroFormComponent implements AfterViewInit {

@@ -2,7 +2,7 @@ namespace :setup do
   desc "Populates the database with seed data"
   task populate_seed: :environment do
     t = User.new(
-      email: "adm@useriq.com",
+      email: "admin@useriq.com",
       name: "John Doe",
       nickname: "Iron Man",
       password: "useriq16",
@@ -12,7 +12,7 @@ namespace :setup do
     t.save!
 
     r = User.new(
-      email: "us@useriq.com",
+      email: "user@useriq.com",
       name: "Jane Doe",
       nickname: "Superwoman",
       password: "useriq16",

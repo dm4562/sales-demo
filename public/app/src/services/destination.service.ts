@@ -3,18 +3,20 @@ import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Locker } from 'angular2-locker';
 
-import { Hero } from '../models/hero';
 import { SessionsService } from './sessions.service';
+import { Destination } from '../models/destination';
 
 @Injectable()
-export class HeroService {
+export class DestinationService {
   private baseUrl = 'http://localhost:3000'; // URL to web API
-  private powerTypes = [
-    'Cosmic',
-    'Mystic',
-    'Science',
-    'Skill',
-    'Technology'
+  private continents = [
+    'Africa',
+    'Antarctica',
+    'Asia',
+    'Australia',
+    'Europe',
+    'North America',
+    'South America'
   ]
 
   constructor(
@@ -23,12 +25,12 @@ export class HeroService {
     private sessions: SessionsService
   ) { }
 
-  getTopHeroes() {
+  getTopDestinations() {
     if (this.locker.has('currentUser')) {
       let options = new RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
-      return this.http.get(`${this.baseUrl}/top_four_heroes`, options)
+      return this.http.get(`${this.baseUrl}/top_destinations`, options)
         .toPromise()
-        .then(res => res.json().heroes as Hero[])
+        .then(res => res.json().destinations as Destination[])
         .catch(this.handleError);
     } else {
       return Promise.reject("not logged in")
@@ -37,12 +39,12 @@ export class HeroService {
     }
   }
 
-  getHeroes() {
+  getDestinations() {
     if (this.locker.has('currentUser')) {
       let options = new RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
-      return this.http.get(`${this.baseUrl}/heros`, options)
+      return this.http.get(`${this.baseUrl}/destinations`, options)
         .toPromise()
-        .then(response => response.json().heroes as Hero[])
+        .then(response => response.json().destinations as Destination[])
         .catch(this.handleError);
     } else {
       return Promise.reject("not logged in")
@@ -51,18 +53,18 @@ export class HeroService {
     }
   }
 
-  getPowerTypes() {
-    return Promise.resolve(this.powerTypes).then(
+  getContinents() {
+    return Promise.resolve(this.continents).then(
       response => response as string[]
     )
   }
 
-  getHero(id: number) {
+  getDestination(id: number) {
     if (this.locker.has('currentUser')) {
       let options = new RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
-      return this.http.get(`${this.baseUrl}/heros/${id}`, options)
+      return this.http.get(`${this.baseUrl}/destinations/${id}`, options)
         .toPromise()
-        .then(response => response.json().hero as Hero)
+        .then(response => response.json().destination as Destination)
         .catch(this.handleError);
     } else {
       return Promise.reject("not logged in")
@@ -77,28 +79,28 @@ export class HeroService {
     return Promise.reject(error.message || error);
   }
 
-  private post(hero: Hero): Promise<Hero> {
+  private post(destination: Destination): Promise<Destination> {
     let options = new RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
-    return this.http.post(`${this.baseUrl}/heros`, JSON.stringify(hero), options)
-      .toPromise().then(res => res.json().hero as Hero)
+    return this.http.post(`${this.baseUrl}/destinations`, JSON.stringify(destination), options)
+      .toPromise().then(res => res.json().destination as Destination)
       .catch(this.handleError);
   }
 
   // Update existing Hero
-  private put(hero: Hero) {
+  private put(destination: Destination) {
     let options = new RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
-    let url = `${this.baseUrl}/heros/${hero.id}`;
+    let url = `${this.baseUrl}/destinations/${destination.id}`;
 
     return this.http
-      .put(url, JSON.stringify(hero), options)
+      .put(url, JSON.stringify(destination), options)
       .toPromise()
-      .then((res) => res.json().hero as Hero)
+      .then((res) => res.json().destination as Destination)
       .catch(this.handleError);
   }
 
   delete(id: number) {
     let options = new RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
-    let url = `${this.baseUrl}/heros/${id}`;
+    let url = `${this.baseUrl}/destinations/${id}`;
 
     return this.http
       .delete(url, options)
@@ -106,11 +108,11 @@ export class HeroService {
       .catch(this.handleError);
   }
 
-  save(hero: Hero): Promise<Hero> {
-    if (hero.id) {
-      return this.put(hero);
+  save(destination: Destination): Promise<Destination> {
+    if (destination.id) {
+      return this.put(destination);
     }
-    return this.post(hero);
+    return this.post(destination);
   }
 
 }

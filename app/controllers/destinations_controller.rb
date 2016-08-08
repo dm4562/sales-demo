@@ -1,4 +1,4 @@
-class DestinationController < ApplicationController
+class DestinationsController < ApplicationController
   before_action :authenticate_user!
 
   # GET destinations/
@@ -12,8 +12,11 @@ class DestinationController < ApplicationController
   def show
     destination = current_user.destinations.where(id: params[:id]).first
 
-    render json: { destination: destination } if destination
-    render status: :not_found
+    if destination
+      render json: { destination: destination } if destination
+    else
+      render status: :not_found, json: { error: "not found" }
+    end
   end
 
   # POST /destinations

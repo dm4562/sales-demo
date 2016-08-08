@@ -46,12 +46,12 @@ class DestinationController < ApplicationController
   end
 
   def top_four
-    destinations = current_user.destinations.order(power: :desc).limit(4)
+    destinations = current_user.destinations.order(score: :desc).limit(4)
     render json: { destinations: destinations }
   end
 
   private
-  def hero_params
+  def destination_params
     params.require(:destination).permit(:name, :dest_type, :desc_short, :desc_long, :score, :image_src)
   end
 end

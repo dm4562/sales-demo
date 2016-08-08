@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160808144200) do
+ActiveRecord::Schema.define(version: 20160808155848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "destinations", force: :cascade do |t|
     t.string   "name"
-    t.string   "dest_type"
+    t.string   "continent"
     t.integer  "score"
     t.string   "desc_short"
     t.text     "desc_long"

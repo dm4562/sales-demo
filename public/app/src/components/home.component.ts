@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { ProtectedDirective } from '../directives/protected.directive';
-import { HeroService } from '../services/hero.service';
+import { DestinationService } from '../services/destination.service';
+import { Destination } from '../models/destination';
 import { Hero } from '../models/hero';
 import { User } from '../models/user';
 import { NavbarComponent } from './navbar.component';
@@ -12,26 +13,26 @@ import { NavbarComponent } from './navbar.component';
 @Component({
   selector: 'home',
   templateUrl: 'app/templates/home.component.html',
-  directives: [ProtectedDirective, NavbarComponent],
-  providers: [HeroService]
+  directives: [ProtectedDirective, NavbarComponent]
+  // providers: [DestinationService]
 })
 
 export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   private sub: any;
-  heroes: Hero[];
+  destinations: Destination[];
   private currentUser: User;
 
   constructor(
     private sessions: SessionsService,
     private router: Router,
     private location: Location,
-    private heroService: HeroService
+    private destinationService: DestinationService
   ) { }
 
   ngAfterViewInit() {
     console.log("heroes call");
-    this.heroService.getTopHeroes().then(
-      (heroes: Hero[]) => this.heroes = heroes
+    this.destinationService.getTopDestinations().then(
+      (destinations: Destination[]) => this.destinations = destinations
     ).catch(error => console.log("couldn't get heroes", error));
 
     this.currentUser = this.sessions.getCurrentUser();

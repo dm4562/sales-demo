@@ -1,6 +1,15 @@
 class DestinationsController < ApplicationController
   before_action :authenticate_user!
 
+  # GET /all_destinations
+  def all
+    if current_user.admin
+      destinations = Destination.order(id: :asc).all
+      render json: { destinations: destinations }
+    else
+      render json: { error: 'not authorized' }, status: :unauthorized
+    end
+  end
   # GET destinations/
   def index
     destinations = current_user.destinations.order(id: :asc).all

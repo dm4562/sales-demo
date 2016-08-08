@@ -39,7 +39,21 @@ export class DestinationService {
     }
   }
 
-  getDestinations() {
+  getAllDestinations() {
+    if (this.locker.has('currentUser')) {
+      let options = new RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
+      return this.http.get(`${this.baseUrl}/all_destinations`, options)
+        .toPromise()
+        .then(response => response.json().destinations as Destination[])
+        .catch(this.handleError);
+    } else {
+      return Promise.reject("not logged in")
+        .then()
+        .catch(this.handleError);
+    }
+  }
+
+  getUserDestinations() {
     if (this.locker.has('currentUser')) {
       let options = new RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
       return this.http.get(`${this.baseUrl}/destinations`, options)
@@ -114,5 +128,4 @@ export class DestinationService {
     }
     return this.post(destination);
   }
-
 }

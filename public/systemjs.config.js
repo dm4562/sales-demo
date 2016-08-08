@@ -11,7 +11,8 @@
     'rxjs': 'assets/rxjs',
     // 'ng2-bootstrap': 'assets/ng2-bootstrap/',
     'moment': 'assets/moment',
-    'angular2-locker': 'assets/angular2-locker'
+    'angular2-locker': 'assets/angular2-locker',
+    'core-js': 'assets/core-js'
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
@@ -22,10 +23,10 @@
     'rxjs': {
       defaultExtension: 'js'
     },
-    'angular2-in-memory-web-api': {
-      main: 'index.js',
-      defaultExtension: 'js'
-    },
+    // 'angular2-in-memory-web-api': {
+    //   main: 'index.js',
+    //   defaultExtension: 'js'
+    // },
     'angular2-locker': {
       main: '/dist/locker',
       defaultExtension: 'js'

@@ -21,7 +21,7 @@ gulp.task('dev-url-service', function() {
       services + '/*.ts'
     ])
     .pipe(greplace(prodUrl, devUrl))
-    .pipe(gulp.dest(services))
+    .pipe(gulp.dest(services));
 });
 
 gulp.task('prep-dev', ['dev-url-service']);

@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804133614) do
+ActiveRecord::Schema.define(version: 20160808144200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "destinations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "dest_type"
+    t.integer  "score"
+    t.string   "desc_short"
+    t.text     "desc_long"
+    t.string   "image_src"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_destinations_on_user_id", using: :btree
+  end
 
   create_table "heros", force: :cascade do |t|
     t.string   "name"
@@ -54,4 +67,5 @@ ActiveRecord::Schema.define(version: 20160804133614) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
   end
 
+  add_foreign_key "destinations", "users"
 end

@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home.component';
 import { AddDestinationComponent } from './components/add-destination.component';
 import { ProfileComponent } from './components/profile.component';
 import { AllDestinationsComponent } from './components/all-destinations.component';
+import { OverviewComponent } from './components/overview.component';
 
 const routes: RouterConfig = [
   {
@@ -41,6 +42,10 @@ const routes: RouterConfig = [
   {
     path: 'all_destinations',
     component: AllDestinationsComponent
+  },
+  {
+    path: 'overview',
+    component: OverviewComponent
   }
 ];
 

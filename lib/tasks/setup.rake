@@ -24,11 +24,11 @@ namespace :setup do
 
     Destination.create([
       {
-        name: "Great Barrier Reef", continent: "Australia", score: 90,
+        name: "Great Barrier Reef", continent: "Australia", score: 92,
         desc_long: "The world's largest coral reef system boasts incredible scenery, whether you view it underwater, from the air or by boat. Though plenty of diving and snorkeling spots can be found along Queensland's coast, to escape the crowds, take an excursion to Hamilton Island.",
         desc_short: "The world's largest coral reef.",
         user_id: 1,
-        image_src: "app/img/great-barrier-reef.jpg"
+        image_src: "app/img/great-barrier-reef.jpeg"
       },
       {
         name: "Paris", continent: "Europe", score: 85,
@@ -98,7 +98,7 @@ namespace :setup do
         desc_long: "This South African city appeals to adventure seekers and mellow travelers alike. Kick-start your day by climbing Table Mountain. Afterward, sunbathe along Clifton Beach's khaki-colored sands or tour the vineyards of Constantia Valley.",
         desc_short: "The colorful and adventurous city of South Africa",
         user_id: 1,
-        image_src: "app/img/cape-town.jepg"
+        image_src: "app/img/cape-town.jpeg"
       },
       {
         name: "Barcelona", continent: "Europe", score: 92,
@@ -140,7 +140,7 @@ namespace :setup do
         desc_long: "Hong Kong is worth visiting for its one-of-a-kind cultural fusion. Only here will you find a Disney theme park rubbing elbows with ancient temples. Peruse a street market, ride the Star Ferry from Tsim Sha Tsui pier or check out the views from atop Victoria Peak.",
         desc_short: "Cultural Fusion at its finest.",
         user_id: 1,
-        image_src: "app/img/hong_kong.jpeg"
+        image_src: "app/img/hong-kong.jpeg"
       },
       {
         name: "Bali", continent: "Asia", score: 84,

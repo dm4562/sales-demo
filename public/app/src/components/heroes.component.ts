@@ -17,9 +17,7 @@ import { DestinationService } from '../services/destination.service';
 
 export class HeroesComponent implements OnInit {
   destinations: Destination[];
-  title = 'Tour of Heroes';
   error: any;
-  addingDestination: boolean;
 
   constructor(
     private destinationService: DestinationService,
@@ -42,16 +40,6 @@ export class HeroesComponent implements OnInit {
   goToDetail(id: number) {
     this.router.navigate(['detail', id]);
   }
-
-  addDestination() {
-    this.addingDestination = true;
-    // this.selectedHero = null;
-  }
-
-  // close(savedHero: Hero) {
-  //   this.addingHero = false;
-  //   if (savedHero) { this.getHeroes; }
-  // }
 
   deleteDestination(id: number) {
     // event.stopPropagation();

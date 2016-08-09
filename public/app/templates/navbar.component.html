@@ -1,19 +1,19 @@
 <div class="section">
   <div class="container">
     <div class="row">
-      <div class="col-md-6 col-md-offset-3 text-center">
+      <div class="col-md-8 col-md-offset-2 text-center">
         <ul class="nav nav-justified nav-pills">
           <li [routerLinkActive]="['active']">
-            <a routerLink="/home">Top Places</a>
+            <a routerLink="/home">Top Destinations</a>
           </li>
           <li [routerLinkActive]="['active']">
-            <a routerLink="/heroes">Your Places</a>
+            <a routerLink="/heroes">Your Destinations</a>
           </li>
           <li [routerLinkActive]="['active']">
-            <a routerLink="/add_hero">Add Place</a>
+            <a routerLink="/add_hero">Add Destination</a>
           </li>
           <li [routerLinkActive]="['active']" *ngIf="currentUser && currentUser.admin">
-            <a routerLink="/all_destinations">All Places</a>
+            <a routerLink="/all_destinations">All Destinations</a>
           </li>
         </ul>
       </div>

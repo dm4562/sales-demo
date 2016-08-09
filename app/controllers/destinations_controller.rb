@@ -67,7 +67,24 @@ class DestinationsController < ApplicationController
   end
 
   def overview
+    highest_rated = Destination.order(score: :desc).first
+    lowest_rated = Destination.order(score: :asc).first
 
+    info = []
+    User.all.each do |user|
+      highest = user.destinations.order(score: :desc).first
+      lowest = user.destinations.order(score: :asc).first
+      count = user.destinations.count
+      temp = {
+        highest: highest,
+        lowest: lowest,
+        count: count,
+        user: user
+      }
+      info << temp
+    end
+
+    render json: { highest_rated: highest_rated, lowest_rated: lowest_rated, user_info: info }
   end
 
   private

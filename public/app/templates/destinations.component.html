@@ -17,7 +17,7 @@
         <div class="col-md-6 col-md-offset-3">
           <ul class="media-list">
             <li class="media" *ngFor="let destination of destinations">
-              <a class="pull-left" href="javascript:;"><img class="media-object" src="{{destination.image_src}}" height="64" width="64"></a>
+              <a class="pull-left" href="javascript:;" (click)="goToDetail(destination.id)"><img class="media-object" src="{{destination.image_src}}" height="64" width="64"></a>
               <div class="btn-group btn-group-vertical pull-right">
                 <a class="btn btn-default" (click)="goToDetail(destination.id)">Details</a>
                 <a class="btn btn-danger" (click)="deleteDestination(destination.id)">Delete</a>
@@ -25,7 +25,7 @@
               <div class="media-body">
                 <h4 class="media-heading">{{destination.name}}</h4>
                 <p>
-                  Score: {{destination.score}}
+                  Rating: {{destination.score}}
                   <br> {{destination.desc_short}}
                 </p>
               </div>

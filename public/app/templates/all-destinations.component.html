@@ -18,13 +18,16 @@
           <div class="col-md-6 col-md-offset-3">
             <ul class="media-list">
               <li class="media" *ngFor="let destination of destinations">
-                <a class="pull-left" href="javascript:;"><img class="media-object" src="{{destination.image_src}}" height="64" width="64"></a>
-                <div class="btn-group btn-group-vertical pull-right">
-                  <a class="btn btn-default" (click)="goToDetail(destination.id)">Details</a>
-                  <a class="btn btn-danger" (click)="deleteDestination(destination.id)">Delete</a>
+                <a class="pull-left" href="javascript:;" (click)="goToDetail(destination.id)">
+                  <img class=" media-object " src="{{destination.image_src}} " height="85" width="85">
+                </a>
+                <div class="btn-group btn-group-vertical pull-right ">
+                  <a class="btn btn-default " (click)="goToDetail(destination.id) ">Details</a>
+                  <a class="btn btn-danger " (click)="deleteDestination(destination.id) ">Delete</a>
                 </div>
-                <div class="media-body">
-                  <h4 class="media-heading">{{destination.name}}</h4>
+                <div class="media-body ">
+                  <h4 class="media-heading ">{{destination.name}}</h4>
+                  <h5 class="media-heading">Created by {{destination.created_by.name}}</h5>
                   <p>
                     Score: {{destination.score}}
                     <br> {{destination.desc_short}}
@@ -34,8 +37,8 @@
             </ul>
           </div>
         </div>
-        <div class="col-md-12 text-center">
-          <a class="btn btn-success" (click)="goToAdddestination()">Add another destination</a>
+        <div class="col-md-12 text-center ">
+          <a class="btn btn-success " (click)="goToAdddestination() ">Add another destination</a>
         </div>
       </div>
     </div>

@@ -7,4 +7,8 @@ export class Destination {
   desc_long: string;
   image_src: string;
   user_id: number;
+  created_by: {
+    name: string,
+    email: string
+  }
 }

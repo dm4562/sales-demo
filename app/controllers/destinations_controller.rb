@@ -19,7 +19,11 @@ class DestinationsController < ApplicationController
 
   # GET destinations/:id
   def show
-    destination = current_user.destinations.where(id: params[:id]).first
+    if current_user.admin
+      destination = Destination.where(id: params[:id]).first
+    else
+      destination = current_user.destinations.where(id: params[:id]).first
+    end
 
     if destination
       render json: { destination: destination } if destination
@@ -62,8 +66,12 @@ class DestinationsController < ApplicationController
     render json: { destinations: destinations }
   end
 
+  def overview
+
+  end
+
   private
   def destination_params
-    params.require(:destination).permit(:name, :dest_type, :desc_short, :desc_long, :score, :image_src)
+    params.require(:destination).permit(:name, :continent, :dest_type, :desc_short, :desc_long, :score, :image_src)
   end
 end

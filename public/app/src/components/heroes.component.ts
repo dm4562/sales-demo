@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../models/hero';
 import { Router } from '@angular/router';
 
-import { HeroService } from '../services/hero.service';
 import { ProtectedDirective } from '../directives/protected.directive';
 import { NavbarComponent } from './navbar.component';
+import { Destination } from '../models/destination';
+import { DestinationService } from '../services/destination.service';
 
 @Component({
   selector: 'my-heroes',
@@ -16,53 +16,52 @@ import { NavbarComponent } from './navbar.component';
 })
 
 export class HeroesComponent implements OnInit {
-  heroes: Hero[];
+  destinations: Destination[];
   title = 'Tour of Heroes';
-  selectedHero: Hero;
   error: any;
-  addingHero: boolean;
+  addingDestination: boolean;
 
   constructor(
-    private heroService: HeroService,
+    private destinationService: DestinationService,
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.getHeroes();
+    this.getDestinations();
   }
 
-  getHeroes() {
-    this.heroService.getHeroes().then(
-      heroes => {
-        console.log(heroes);
-        this.heroes = heroes
+  getDestinations() {
+    this.destinationService.getUserDestinations().then(
+      (destinations: Destination[]) => {
+        // console.log(heroes);
+        this.destinations = destinations;
       });
-    console.log(this.heroes);
+    // console.log(this.heroes);
   }
 
   goToDetail(id: number) {
     this.router.navigate(['detail', id]);
   }
 
-  addHero() {
-    this.addingHero = true;
-    this.selectedHero = null;
+  addDestination() {
+    this.addingDestination = true;
+    // this.selectedHero = null;
   }
 
-  close(savedHero: Hero) {
-    this.addingHero = false;
-    if (savedHero) { this.getHeroes; }
-  }
+  // close(savedHero: Hero) {
+  //   this.addingHero = false;
+  //   if (savedHero) { this.getHeroes; }
+  // }
 
-  deleteHero(id: number) {
+  deleteDestination(id: number) {
     // event.stopPropagation();
-    this.heroService
+    this.destinationService
       .delete(id)
-      .then(res => this.getHeroes())
+      .then(res => this.getDestinations())
       .catch(error => this.error = error);
   }
 
-  goToAddHero() {
+  goToAddDestination() {
     this.router.navigateByUrl('/add_hero');
   }
 }

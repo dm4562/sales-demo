@@ -14,24 +14,24 @@
   <div class="section">
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6 col-md-offset-3">
           <ul class="media-list">
-            <li class="media" *ngFor="let hero of heroes">
-              <a class="pull-left" href="#"><img class="media-object" src="{{hero.image_src}}" height="64" width="64"></a>
+            <li class="media" *ngFor="let destination of destinations">
+              <a class="pull-left" href="javascript:;"><img class="media-object" src="{{destination.image_src}}" height="64" width="64"></a>
               <div class="btn-group btn-group-vertical pull-right">
-                <a class="btn btn-default" (click)="goToDetail(hero.id)">Details</a>
-                <a class="btn btn-danger" (click)="deleteHero(hero.id)">Delete</a>
+                <a class="btn btn-default" (click)="goToDetail(destination.id)">Details</a>
+                <a class="btn btn-danger" (click)="deleteDestination(destination.id)">Delete</a>
               </div>
               <div class="media-body">
-                <h4 class="media-heading">{{hero.name}}</h4>
-                <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
+                <h4 class="media-heading">{{destination.name}}</h4>
+                <p>{{destination.desc_short}}</p>
               </div>
             </li>
           </ul>
         </div>
       </div>
       <div class="col-md-12 text-center">
-        <a class="btn btn-success" (click)="goToAddHero()">Add another destination</a>
+        <a class="btn btn-success" (click)="goToAdddestination()">Add another destination</a>
       </div>
     </div>
   </div>

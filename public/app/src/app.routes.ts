@@ -1,11 +1,11 @@
 import { provideRouter, RouterConfig } from '@angular/router';
 
-import { HeroesComponent } from './components/heroes.component';
+import { DestinationsComponent } from './components/destinations.component';
 import { DashboardComponent } from './components/dashboard.component';
-import { HeroDetailComponent } from './components/hero-detail.component';
+import { DestinationDetailComponent } from './components/destination-detail.component';
 import { LoginFormComponent } from './components/login-form.component';
 import { HomeComponent } from './components/home.component';
-import { HeroFormComponent } from './components/hero-form.component';
+import { AddDestinationComponent } from './components/add-destination.component';
 import { ProfileComponent } from './components/profile.component';
 import { AllDestinationsComponent } from './components/all-destinations.component';
 
@@ -20,8 +20,8 @@ const routes: RouterConfig = [
     component: HomeComponent
   },
   {
-    path: 'heroes',
-    component: HeroesComponent
+    path: 'destinations',
+    component: DestinationsComponent
   },
   {
     path: 'dashboard',
@@ -29,7 +29,7 @@ const routes: RouterConfig = [
   },
   {
     path: 'detail/:id',
-    component: HeroDetailComponent
+    component: DestinationDetailComponent
   },
   {
     path: 'sign_in',
@@ -40,8 +40,8 @@ const routes: RouterConfig = [
     component: ProfileComponent
   },
   {
-    path: 'add_hero',
-    component: HeroFormComponent
+    path: 'add_destination',
+    component: AddDestinationComponent
   },
   {
     path: 'all_destinations',

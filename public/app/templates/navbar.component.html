@@ -7,10 +7,10 @@
             <a routerLink="/home">Top Destinations</a>
           </li>
           <li [routerLinkActive]="['active']">
-            <a routerLink="/heroes">Your Destinations</a>
+            <a routerLink="/destinations">Your Destinations</a>
           </li>
           <li [routerLinkActive]="['active']">
-            <a routerLink="/add_hero">Add Destination</a>
+            <a routerLink="/add_destination">Add Destination</a>
           </li>
           <li [routerLinkActive]="['active']" *ngIf="currentUser && currentUser.admin">
             <a routerLink="/all_destinations">All Destinations</a>

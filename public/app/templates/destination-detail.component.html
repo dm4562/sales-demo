@@ -18,14 +18,15 @@
             <h3>Rating: {{destination.score}}/100</h3>
             <h4>Location: {{destination.continent}}</h4>
             <p>{{destination.desc_long}}</p>
+            <br>
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-4 text-center">
                 <a class="btn btn-warning" (click)="toggleForm()">Edit</a>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-4 text-center">
                 <a class="btn btn-default" (click)="goBack()">Back</a>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-4 text-center">
                 <a class="btn btn-danger" (click)="deleteDestination()">Delete</a>
               </div>
             </div>

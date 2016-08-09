@@ -7,15 +7,15 @@ import { Destination } from '../models/destination';
 import { DestinationService } from '../services/destination.service';
 
 @Component({
-  selector: 'my-heroes',
-  templateUrl: 'app/templates/heroes.component.html',
+  selector: 'destinations',
+  templateUrl: 'app/templates/destinations.component.html',
   directives: [
     ProtectedDirective,
     NavbarComponent
   ]
 })
 
-export class HeroesComponent implements OnInit {
+export class DestinationsComponent implements OnInit {
   destinations: Destination[];
   error: any;
 

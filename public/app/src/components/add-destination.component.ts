@@ -7,12 +7,12 @@ import { Destination } from '../models/destination';
 import { DestinationService } from '../services/destination.service';
 
 @Component({
-  selector: 'hero-form',
-  templateUrl: 'app/templates/hero-form.component.html',
+  selector: 'add-destination',
+  templateUrl: 'app/templates/add-destination.component.html',
   directives: [ProtectedDirective, NavbarComponent]
 })
 
-export class HeroFormComponent implements AfterViewInit {
+export class AddDestinationComponent implements AfterViewInit {
   @Input() newDestination = new Destination();
   private continents: string[];
   @Input() image: boolean = false;

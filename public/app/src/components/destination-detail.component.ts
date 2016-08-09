@@ -7,13 +7,13 @@ import { Destination } from '../models/destination';
 import { DestinationService } from '../services/destination.service';
 
 @Component({
-  selector: 'my-hero-detail',
-  templateUrl: 'app/templates/hero-detail.component.html',
+  selector: 'destination-detail',
+  templateUrl: 'app/templates/destination-detail.component.html',
   directives: [ProtectedDirective, NavbarComponent]
 })
 
 
-export class HeroDetailComponent implements OnInit, OnDestroy {
+export class DestinationDetailComponent implements OnInit, OnDestroy {
   @Input() destination: Destination;
   @Output() close = new EventEmitter();
   error: boolean = false;

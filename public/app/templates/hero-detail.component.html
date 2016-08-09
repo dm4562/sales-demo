@@ -1,5 +1,5 @@
 <protected>
-  <div *ngIf="hero">
+  <div *ngIf="destination">
     <div class="section">
       <div class="container">
         <div class="row">
@@ -13,11 +13,11 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
-            <img src="{{hero.image_src}}" class="center-block img-responsive">
-            <h1>{{hero.name}}</h1>
-            <h3>Rating: {{hero.power}}/100</h3>
-            <h4>Type: {{hero.power_type}}</h4>
-            <p>{{hero.description}}</p>
+            <img src="{{destination.image_src}}" class="center-block img-responsive">
+            <h1>{{destination.name}}</h1>
+            <h3>Rating: {{destination.score}}/100</h3>
+            <h4>Location: {{destination.continent}}</h4>
+            <p>{{destination.desc_long}}</p>
             <div class="row">
               <div class="col-md-4">
                 <a class="btn btn-warning" (click)="toggleForm()">Edit</a>
@@ -26,7 +26,7 @@
                 <a class="btn btn-default" (click)="goBack()">Back</a>
               </div>
               <div class="col-md-4">
-                <a class="btn btn-danger" (click)="deleteHero()">Delete</a>
+                <a class="btn btn-danger" (click)="deleteDestination()">Delete</a>
               </div>
             </div>
           </div>
@@ -47,39 +47,47 @@
             <button contenteditable="false" type="button" class="close" data-dismiss="alert" aria-hidden="true" (click)="toggleError()">×</button>
             Destination could not be edited
           </div>
-          <form class="form-horizontal" role="form" (ngSubmit)="editHero()" #heroForm="ngForm" *ngIf="showEdit">
+          <form class="form-horizontal" role="form" (ngSubmit)="editDestination()" #destinationForm="ngForm" *ngIf="showEdit">
             <div class="form-group">
               <div class="col-sm-2">
                 <label for="inputEmail3" class="control-label">Name</label>
               </div>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputEmail3" placeholder="Name" required [(ngModel)]="hero.name" name="name">
+                <input type="text" class="form-control" id="inputEmail3" placeholder="Name" required [(ngModel)]="destination.name" name="name">
               </div>
             </div>
             <div class="form-group">
               <div class="col-sm-2">
-                <label class="control-label">Power Type</label>
+                <label class="control-label">Location</label>
               </div>
               <div class="col-sm-10">
-                <select class="form-control" [(ngModel)]="hero.power_type" name="power_type">
-                  <option *ngFor="let power of powerTypes">{{power}}</option>
+                <select class="form-control" [(ngModel)]="destination.continent" name="power_type">
+                  <option *ngFor="let continent of continents">{{continent}}</option>
                 </select>
               </div>
             </div>
             <div class="form-group">
               <div class="col-sm-2">
-                <label class="control-label">Power</label>
+                <label class="control-label">Score</label>
               </div>
               <div class="col-sm-10">
-                <input type="number" class="form-control" placeholder="84" min="1" max="100" required [(ngModel)]="hero.power" name="power">
+                <input type="number" class="form-control" placeholder="84" min="1" max="100" required [(ngModel)]="destination.score" name="power">
               </div>
             </div>
             <div class="form-group">
               <div class="col-sm-2">
-                <label class="control-label">Description</label>
+                <label for="inputEmail3" class="control-label">Short Description</label>
               </div>
               <div class="col-sm-10">
-                <textarea class="form-control" required [(ngModel)]="hero.description" name="description"></textarea>
+                <input type="text" class="form-control" id="inputshortdesc" placeholder="Short Description" required [(ngModel)]="destination.desc_short" name="desc_short">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-2">
+                <label class="control-label">Long Description</label>
+              </div>
+              <div class="col-sm-10">
+                <textarea class="form-control" required [(ngModel)]="destination.desc_long" name="desc_long"></textarea>
               </div>
             </div>
             <div class="form-group">
@@ -87,12 +95,12 @@
                 <label class="control-label">Source</label>
               </div>
               <div class="col-sm-10">
-                <input type="text" class="form-control" [(ngModel)]="hero.image_src" name="image_src">
+                <input type="text" class="form-control" [(ngModel)]="destination.image_src" name="image_src">
               </div>
             </div>
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn">Save
+                <button type="submit" class="btn btn-success">Save
                   <br>
                 </button>
               </div>

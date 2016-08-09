@@ -19,6 +19,7 @@
       <div class="row ">
         <div *ngFor="let destination of destinations " class="col-md-3 "> <img src="{{destination.image_src}} " class="img-responsive ">
           <h2>{{destination.name}}</h2>
+          <h3>Score: {{destination.score}}</h3>
           <p>{{destination.desc_long}}</p>
         </div>
       </div>

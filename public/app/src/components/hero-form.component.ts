@@ -2,9 +2,9 @@ import { Component, Input, Output, AfterViewInit, OnDestroy } from '@angular/cor
 import { NgForm } from '@angular/forms';
 
 import { ProtectedDirective } from '../directives/protected.directive';
-import { Hero } from '../models/hero';
-import { HeroService } from '../services/hero.service';
 import { NavbarComponent } from './navbar.component';
+import { Destination } from '../models/destination';
+import { DestinationService } from '../services/destination.service';
 
 @Component({
   selector: 'hero-form',
@@ -13,33 +13,33 @@ import { NavbarComponent } from './navbar.component';
 })
 
 export class HeroFormComponent implements AfterViewInit {
-  @Input() newHero = new Hero();
-  private powerTypes: string[];
+  @Input() newDestination = new Destination();
+  private continents: string[];
   @Input() image: boolean = false;
   private status: string = null;
   private success = false;
   private error = false;
 
   constructor(
-    private heroService: HeroService
+    private destinationService: DestinationService
   ) { }
 
   ngAfterViewInit() {
-    this.heroService.getPowerTypes().then(
-      (success) => {
-        this.powerTypes = success;
-        this.newHero.power_type = success[0]
+    this.destinationService.getContinents().then(
+      (success: string[]) => {
+        this.continents = success;
+        this.newDestination.continent = success[0]
       },
-      (failure) => console.log("Couldnt get types")
+      (failure) => console.log("Couldnt get continents")
     );
   }
 
-  addHero() {
-    this.heroService.save(this.newHero).then(
+  addDestination() {
+    this.destinationService.save(this.newDestination).then(
       (success) => {
         this.success = true;
         this.error = false;
-        this.newHero = new Hero();
+        this.newDestination = new Destination();
       },
       (failure) => {
         this.error = true;

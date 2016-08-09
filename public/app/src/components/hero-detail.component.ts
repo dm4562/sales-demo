@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Hero } from '../models/hero';
-import { HeroService } from '../services/hero.service';
 import { ProtectedDirective } from '../directives/protected.directive';
 import { NavbarComponent } from './navbar.component';
+import { Destination } from '../models/destination';
+import { DestinationService } from '../services/destination.service';
 
 @Component({
   selector: 'my-hero-detail',
@@ -14,22 +14,22 @@ import { NavbarComponent } from './navbar.component';
 
 
 export class HeroDetailComponent implements OnInit, OnDestroy {
-  @Input() hero: Hero;
+  @Input() destination: Destination;
   @Output() close = new EventEmitter();
   error: boolean = false;
   sub: any;
   navigated: boolean = false;
   showEdit = false;
-  powerTypes: string[];
+  continents: string[];
   success = false;
 
   constructor(
-    private heroService: HeroService,
+    private destinationService: DestinationService,
     private route: ActivatedRoute
   ) { }
 
-  editHero() {
-    this.heroService.save(this.hero).then(
+  editDestination() {
+    this.destinationService.save(this.destination).then(
       (success) => {
         this.success = true;
         this.showEdit = false;
@@ -41,13 +41,13 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
     )
   }
 
-  deleteHero() {
-    this.heroService.delete(this.hero.id).then(
+  deleteDestination() {
+    this.destinationService.delete(this.destination.id).then(
       success => {
         this.goBack();
       },
       error => {
-        console.log("hero could not be deleted");
+        console.log("destination could not be deleted");
       }
     )
   }
@@ -70,31 +70,31 @@ export class HeroDetailComponent implements OnInit, OnDestroy {
         let id = +params['id'];
         // console.log(id);
         this.navigated = true;
-        this.heroService.getHero(id).then(
+        this.destinationService.getDestination(id).then(
           (h) => {
-            this.hero = h;
-            // console.log(this.hero);
+            this.destination = h;
+            // console.log(this.destination);
           });
       } else {
         this.navigated = false;
-        this.hero = new Hero();
+        this.destination = new Destination();
       }
     });
-    this.heroService.getPowerTypes().then(
-      (success) => {
-        this.powerTypes = success;
+    this.destinationService.getContinents().then(
+      (success: string[]) => {
+        this.continents = success;
       },
       (failure) => console.log("Couldnt get types")
     );
-    // console.log(this.hero);
+    // console.log(this.destination);
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
 
-  goBack(savedHero: Hero = null) {
-    this.close.emit(savedHero);
+  goBack(savedDestination: Destination = null) {
+    this.close.emit(savedDestination);
     if (this.navigated) {
       window.history.back();
     }

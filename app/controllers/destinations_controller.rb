@@ -44,7 +44,7 @@ class DestinationsController < ApplicationController
   def update
     destination = Destination.find(params[:id])
 
-    if destination.update(hero_params)
+    if destination.update(destination_params)
       render json: { destination: destination }
     else
       render json: { errors: destination.errors }, status: :unprocessable_entity

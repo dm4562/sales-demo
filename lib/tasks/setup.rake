@@ -1,6 +1,6 @@
 namespace :setup do
   desc "Populates the database with seed data"
-  task populate_seed: :environment do
+  task seed_db: :environment do
     t = User.new(
       email: "admin@useriq.com",
       name: "John Doe",

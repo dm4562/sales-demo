@@ -2,7 +2,6 @@ import { Component, OnInit, Input, AfterViewChecked, AfterContentInit } from '@a
 import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { HeroService } from '../services/hero.service';
 import { DestinationService } from '../services/destination.service';
 import { SessionsService } from '../services/sessions.service';
 import { User } from '../models/user';
@@ -13,7 +12,6 @@ import '../rxjs-extensions';
   templateUrl: 'app/templates/app.component.html',
   directives: [ROUTER_DIRECTIVES],
   providers: [
-    HeroService,
     SessionsService,
     DestinationService
   ]

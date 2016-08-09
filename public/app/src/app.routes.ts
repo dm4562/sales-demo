@@ -1,7 +1,6 @@
 import { provideRouter, RouterConfig } from '@angular/router';
 
 import { DestinationsComponent } from './components/destinations.component';
-import { DashboardComponent } from './components/dashboard.component';
 import { DestinationDetailComponent } from './components/destination-detail.component';
 import { LoginFormComponent } from './components/login-form.component';
 import { HomeComponent } from './components/home.component';
@@ -22,10 +21,6 @@ const routes: RouterConfig = [
   {
     path: 'destinations',
     component: DestinationsComponent
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent
   },
   {
     path: 'detail/:id',

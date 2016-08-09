@@ -6,7 +6,6 @@ import { Location } from '@angular/common';
 import { ProtectedDirective } from '../directives/protected.directive';
 import { DestinationService } from '../services/destination.service';
 import { Destination } from '../models/destination';
-import { Hero } from '../models/hero';
 import { User } from '../models/user';
 import { NavbarComponent } from './navbar.component';
 

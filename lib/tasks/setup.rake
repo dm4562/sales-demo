@@ -4,7 +4,7 @@ namespace :setup do
     t = User.new(
       email: "admin@useriq.com",
       name: "John Doe",
-      nickname: "Iron Man",
+      nickname: "The Almighty",
       password: "useriq16",
       password_confirmation: "useriq16",
       admin: true
@@ -20,6 +20,33 @@ namespace :setup do
       admin: false
     )
     r.save!
+
+    User.create(
+      email: "ironman@useriq.com",
+      name: "Tony Stark",
+      nickname: "Iron Man",
+      password: "useriq16",
+      password_confirmation: "useriq16",
+      admin: false
+    )
+
+    User.create(
+      email: "blackwidow@useriq.com",
+      name: "Natasha",
+      nickname: "Black Widow",
+      password: "useriq16",
+      password_confirmation: "useriq16",
+      admin: false
+    )
+
+    User.create(
+      email: "spiderman@useriq.com",
+      name: "Peter Parker",
+      nickname: "Spider Man",
+      password: "useriq16",
+      password_confirmation: "useriq16",
+      admin: false
+    )
 
 
     Destination.create([

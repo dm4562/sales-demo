@@ -87,6 +87,20 @@ export class DestinationService {
     }
   }
 
+  getDestinationOverview() {
+    if (this.locker.has('currentUser')) {
+      let options = new RequestOptions({ headers: this.locker.get('currentUser').authHeaders });
+      return this.http.get(`${this.baseUrl}/destinations_overview`, options)
+        .toPromise()
+        .then(response => response.json())
+        .catch(this.handleError);
+    } else {
+      return Promise.reject("couldn't get overview")
+        .then()
+        .catch(this.handleError);
+    }
+  }
+
   handleError(error: any) {
     console.error('An error occurred', error);
     this.sessions.emitAuthStatus(null);

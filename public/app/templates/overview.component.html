@@ -5,8 +5,48 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
-            <!-- <img src="app/img/world-map.jpeg" class="img-responsive"> -->
             <h1 class="text-center">Overview</h1>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div *ngIf="overallHighest && overallLowest">
+            <h3>Overall Highest Rated</h3>
+            <p><strong>{{overallHighest.name}}</strong>
+              <br>Score: {{overallHighest.score}}
+              <br>{{overallHighest.desc_long}}
+            </p>
+            <h3>Overall Lowest Rated</h3>
+            <p><strong>{{overallLowest.name}}</strong>
+              <br>Score: {{overallLowest.score}}
+              <br>{{overallLowest.desc_long}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <div *ngIf="userData">
+              <div *ngFor="let userInfo of userData">
+                <h2>{{userInfo.user.name}}</h2>
+                <h3>Highest Rated</h3>
+                <p><strong>{{userInfo.highest.name}}</strong>
+                  <br>Score: {{userInfo.highest.score}}
+                  <br>{{userInfo.highest.desc_long}}</p>
+                <h3>Lowest Rated</h3>
+                <p><strong>{{userInfo.lowest.name}}</strong>
+                  <br>Score: {{userInfo.highest.score}}
+                  <br>{{userInfo.lowest.desc_long}}</p>
+                <hr>
+              </div>
+            </div>
           </div>
         </div>
       </div>

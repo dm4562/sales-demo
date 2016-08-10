@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :destinations
   get 'top_destinations', to: 'destinations#top_four'
   get 'all_destinations', to: 'destinations#all'
+  get 'destinations_overview', to: 'destinations#overview'
 end

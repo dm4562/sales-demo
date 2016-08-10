@@ -176,6 +176,48 @@ namespace :setup do
         user_id: 2,
         image_src: "app/img/bali.jpeg"
       },
+      {
+        name: "Cairo", continent: "Africa", score: 83,
+        desc_long: "Cairo's high temperatures and ancient charm continue to draw in tourists every year. The Giza Pyramids – one of the Seven Wonders of the Ancient World – can be found here, plus historic neighborhoods like Coptic Cairo.",
+        desc_short: "Home of the Pyramids and Mummies.",
+        user_id: 3,
+        image_src: "app/img/cairo.jpeg"
+      },
+      {
+        name: "Washington D.C.", continent: "North America", score: 88,
+        desc_long: "With a trove of iconic monuments, it's no wonder why our nation's capital is one of America's most-visited cities. Exploring the Washington Monument, the Lincoln Memorial and the Smithsonian Institution's museums can easily fill several days. And the best part is: So much is free to visit.",
+        desc_short: "The most powerful city in the world.",
+        user_id: 3,
+        image_src: "app/img/washington.jpg"
+      },
+      {
+        name: "Grand Canyon", continent: "North America", score: 85,
+        desc_long: "Measuring roughly 277 miles long and 18 miles wide, the Grand Canyon offers plenty of outdoor activities for adventure junkies. Popular things to do include hiking the Bright Angel and Rim trails and going whitewater rafting on the Colorado River.",
+        desc_short: "The biggest canyons in the world.",
+        user_id: 4,
+        image_src: "app/img/grand-canyon.jpeg"
+      },
+      {
+        name: "British Virgin Islands", continent: "Europe", score: 92,
+        desc_long: "If picturesque beaches and warm weather are what you're after, look no further than the British Virgin Islands. For easy access to Smuggler's Cove, Brewers Bay and other top-notch BVI beaches, consider staying on Tortola, the territory's largest island.",
+        desc_short: "Picturesque beaches, cool water and warm weather.",
+        user_id: 4,
+        image_src: "app/img/virgin-islands.jpeg"
+      },
+      {
+        name: "Argentine Patagonia", continent: "South America", score: 88,
+        desc_long: "Jaw-dropping landscapes make this South American destination a quintessential spot for adventure travelers to visit. While wandering Argentine Patagonia, you'll see everything from picturesque lakes to towering glaciers and mountains.",
+        desc_short: "The quintessential spot for adventure junkies.",
+        user_id: 5,
+        image_src: "app/img/patagonia.jpg"
+      },
+      {
+        name: "Budapest", continent: "Europe", score: 89,
+        desc_long: "Budapest is a sure standout for any trip to Eastern Europe. The city caters to a wide range of traveler types and budgets with its variety of hotels and restaurants. Thermal baths and world-class museums are just some of the attractions you'll find here.",
+        desc_short: "The perfect modern city.",
+        user_id: 5,
+        image_src: "app/img/budapest.jpeg"
+      }
     ])
   end
 

@@ -71,7 +71,7 @@ class DestinationsController < ApplicationController
     lowest_rated = Destination.order(score: :asc).first
 
     info = []
-    User.all.each do |user|
+    User.order(id: :asc).all.each do |user|
       highest = user.destinations.order(score: :desc).first
       lowest = user.destinations.order(score: :asc).first
       count = user.destinations.count

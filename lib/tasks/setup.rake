@@ -212,7 +212,7 @@ namespace :setup do
         image_src: "app/img/patagonia.jpg"
       },
       {
-        name: "Budapest", continent: "Europe", score: 89,
+        name: "Budapest", continent: "Europe", score: 92,
         desc_long: "Budapest is a sure standout for any trip to Eastern Europe. The city caters to a wide range of traveler types and budgets with its variety of hotels and restaurants. Thermal baths and world-class museums are just some of the attractions you'll find here.",
         desc_short: "The perfect modern city.",
         user_id: 5,

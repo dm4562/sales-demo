@@ -36,13 +36,16 @@
             <div *ngIf="userData">
               <div *ngFor="let userInfo of userData">
                 <h2>{{userInfo.user.name}}</h2>
+                <p>
+                  <strong>Destinations visited: {{userInfo.count}}</strong>
+                </p>
                 <h3>Highest Rated</h3>
                 <p><strong>{{userInfo.highest.name}}</strong>
                   <br>Score: {{userInfo.highest.score}}
                   <br>{{userInfo.highest.desc_long}}</p>
                 <h3>Lowest Rated</h3>
                 <p><strong>{{userInfo.lowest.name}}</strong>
-                  <br>Score: {{userInfo.highest.score}}
+                  <br>Score: {{userInfo.lowest.score}}
                   <br>{{userInfo.lowest.desc_long}}</p>
                 <hr>
               </div>

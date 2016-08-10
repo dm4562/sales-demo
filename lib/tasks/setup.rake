@@ -32,7 +32,7 @@ namespace :setup do
 
     User.create(
       email: "blackwidow@useriq.com",
-      name: "Natasha",
+      name: "Natasha Romanoff",
       nickname: "Black Widow",
       password: "useriq16",
       password_confirmation: "useriq16",

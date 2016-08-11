@@ -43,6 +43,34 @@
   <body>
     <!-- <base href="/"> -->
     <my-app></my-app>
+    <!--  408029901-->
+    <script type="text/javascript">
+      // console.log('currentUser-index', window.currentUser);
+      var _uiq = _uiq || [];
+      //TODO: Update the user and account variables below
+      //_uiq.push(['setCustomVariable','1','user_id','1234','visit']);
+      //_uiq.push(['setCustomVariable','2','user_name','Tony Stark','visit']);
+      //_uiq.push(['setCustomVariable','3','account_id','5678','visit']);
+      //_uiq.push(['setCustomVariable','4','account_name','Stark Industries','visit']);
+      //_uiq.push(['setCustomVariable','5','user_email','tony.stark@stark.com','visit']);
+      //_uiq.push(['setCustomVariable','6','signup_date','2015-03-14','visit']);
+      _uiq.push(["enableLinkTracking"]);
+      // _uiq.push(["trackPageView"]);
+      (function() {
+        var _uiq_config_url = (("https:" == document.location.protocol) ? "https" : "http") + "://feed.useriq.com/";
+        var _uiq_prod_url = (("https:" == document.location.protocol) ? "https" : "http") + "://secure.useriq.com/";
+        _uiq.push(["setTrackerUrl", _uiq_prod_url + "visits/push"]);
+        _uiq.push(["setSiteId", "408029901"]);
+        var d = document,
+          g = d.createElement("script"),
+          s = d.getElementsByTagName("script")[0];
+        g.type = "text/javascript";
+        g.defer = true;
+        g.async = true;
+        g.src = _uiq_config_url + "useriq.js";
+        s.parentNode.insertBefore(g, s);
+      })();
+    </script>
   </body>
 
 </html>

@@ -7,6 +7,8 @@ import { NewPassword } from '../models/new-password';
 
 import { Locker } from 'angular2-locker';
 
+declare var _uiq: any;
+
 @Injectable()
 export class SessionsService {
   private url = "http://localhost:3000/auth/";
@@ -45,8 +47,9 @@ export class SessionsService {
           'Token-Type': headers.get('Token-Type')
         };
         this.loggedIn = true;
-        console.log("sessions user", this.currentUser);
+        // console.log("sessions user", this.currentUser);
         this.locker.set(this.lockerKey, (this.currentUser));
+        this.setUIQVariables(this.currentUser);
         this.emitAuthStatus(null);
         console.log("user", this.currentUser);
       },
@@ -62,6 +65,7 @@ export class SessionsService {
   isLoggedIn() {
     if (this.locker.has(this.lockerKey)) {
       this.currentUser = this.locker.get(this.lockerKey);
+      this.setUIQVariables(this.currentUser);
       this.validateToken();
     } else {
       this.currentUser = null;
@@ -83,6 +87,7 @@ export class SessionsService {
         (fail: Response) => {
           this.loggedIn = false;
           this.currentUser = null;
+          // window['currentUser'] = this.currentUser;
           this.locker.remove(this.lockerKey);
           console.log("could not validate token");
           this.emitAuthStatus(null);
@@ -111,6 +116,7 @@ export class SessionsService {
         (res: Response) => {
           console.log("logout successful");
           this.currentUser = null;
+          window['currentUser'] = this.currentUser;
           this.loggedIn = false;
           this.locker.remove(this.lockerKey);
           this.emitAuthStatus(null);
@@ -118,6 +124,7 @@ export class SessionsService {
         (error: Response) => {
           this.currentUser = null;
           this.loggedIn = false;
+          window['currentUser'] = this.currentUser;
           this.locker.remove(this.lockerKey);
           this.emitAuthStatus(null);
         }
@@ -164,6 +171,7 @@ export class SessionsService {
       (success) => {
         this.currentUser = success.json().data;
         this.locker.set(this.lockerKey, this.currentUser);
+        this.setUIQVariables(this.currentUser);
         this.emitAuthStatus("success");
       },
       (failure) => {
@@ -171,6 +179,16 @@ export class SessionsService {
         console.log("profile couldnt be updated");
         this.emitAuthStatus("failure");
       });
+  }
+
+  private setUIQVariables(user: User) {
+    _uiq.push(['setCustomVariable', '1', 'user_id', user.id, 'visit']);
+    _uiq.push(['setCustomVariable', '2', 'user_name', user.name, 'visit']);
+    _uiq.push(['setCustomVariable', '3', 'user_email', user.email, 'visit']);
+    //_uiq.push(['setCustomVariable','4','account_name','Stark Industries','visit']);
+    //_uiq.push(['setCustomVariable','5','user_email','tony.stark@stark.com','visit']);
+    //_uiq.push(['setCustomVariable','6','signup_date','2015-03-14','visit']);
+    _uiq.push(["trackPageView"]);
   }
 
   public subscribe(onNext: (value: any) => void, onThrow?: (exception: any) => void, onReturn?: () => void) {

@@ -51,13 +51,6 @@ namespace :setup do
 
     Destination.create([
       {
-        name: "Great Barrier Reef", continent: "Australia", score: 92,
-        desc_long: "The world's largest coral reef system boasts incredible scenery, whether you view it underwater, from the air or by boat. Though plenty of diving and snorkeling spots can be found along Queensland's coast, to escape the crowds, take an excursion to Hamilton Island.",
-        desc_short: "The world's largest coral reef.",
-        user_id: 1,
-        image_src: "app/img/great-barrier-reef.jpeg"
-      },
-      {
         name: "Paris", continent: "Europe", score: 85,
         desc_long: "Year after year, the magnetic City of Light draws travelers looking to cross the Eiffel Tower and Notre Dame off their bucket lists. But what visitors really fall in love with are the city's quaint cafes, vibrant markets, trendy shopping districts and unmistakable je ne sais quoi charm.",
         desc_short: "The magnetic City of Light.",
@@ -91,6 +84,13 @@ namespace :setup do
         desc_short: "the heart of the Inca Empire and the archaeological capital of the Americas.",
         user_id: 2,
         image_src: "app/img/cusco.jpg"
+      },
+      {
+        name: "Great Barrier Reef", continent: "Australia", score: 92,
+        desc_long: "The world's largest coral reef system boasts incredible scenery, whether you view it underwater, from the air or by boat. Though plenty of diving and snorkeling spots can be found along Queensland's coast, to escape the crowds, take an excursion to Hamilton Island.",
+        desc_short: "The world's largest coral reef.",
+        user_id: 1,
+        image_src: "app/img/great-barrier-reef.jpeg"
       },
       {
         name: "London", continent: "Europe", score: 90,

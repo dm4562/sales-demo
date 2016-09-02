@@ -8,7 +8,7 @@ import { Destination } from '../models/destination';
 
 @Injectable()
 export class DestinationService {
-  private baseUrl = 'http://localhost:3000'; // URL to web API
+  private baseUrl = 'http://localhost:3001'; // URL to web API
   private continents = [
     'Africa',
     'Antarctica',

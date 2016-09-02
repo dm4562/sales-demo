@@ -11,7 +11,7 @@ declare var _uiq: any;
 
 @Injectable()
 export class SessionsService {
-  private url = "http://localhost:3000/auth/";
+  private url = "http://localhost:3001/auth/";
 
   private loggedIn: boolean = false;
   private currentUser: User = null;

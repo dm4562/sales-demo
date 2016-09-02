@@ -3,7 +3,7 @@ var gutil = require('gulp-util');
 var greplace = require('gulp-replace');
 
 var services = 'public/app/src/services';
-var devUrl = 'http://localhost:3000';
+var devUrl = 'http://localhost:3001';
 var prodUrl = 'https://sales-seed.herokuapp.com';
 
 gulp.task('prod-url-service', function() {

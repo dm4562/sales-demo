@@ -57,17 +57,17 @@
       _uiq.push(["enableLinkTracking"]);
       // _uiq.push(["trackPageView"]);
       (function() {
-        var _uiq_config_url = (("https:" == document.location.protocol) ? "https" : "http") + "://feed.useriq.com/";
-        var _uiq_prod_url = (("https:" == document.location.protocol) ? "https" : "http") + "://secure.useriq.com/";
-        _uiq.push(["setTrackerUrl", _uiq_prod_url + "visits/push"]);
-        _uiq.push(["setSiteId", "408029901"]);
+        var pushUrl = 'http://dev.useriq.com:3000' + "/visits/push";
+        var useriqJsPath = 'http://dev.useriq.com:3000' + '/' + 'js/useriq.dev.js';
+        _uiq.push(["setTrackerUrl", pushUrl]);
+        _uiq.push(["setSiteId", "1"]);
         var d = document,
           g = d.createElement("script"),
           s = d.getElementsByTagName("script")[0];
         g.type = "text/javascript";
         g.defer = true;
         g.async = true;
-        g.src = _uiq_config_url + "useriq.js";
+        g.src = useriqJsPath;
         s.parentNode.insertBefore(g, s);
       })();
     </script>

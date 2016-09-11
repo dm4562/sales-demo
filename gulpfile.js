@@ -4,7 +4,7 @@ var greplace = require('gulp-replace');
 
 var services = 'public/app/src/services';
 var devUrl = 'http://localhost:3001';
-var prodUrl = 'https://' + "sales-seed" + '.herokuapp.com';
+var prodUrl = 'https://' + process.env.SALES_URL + '.herokuapp.com';
 
 gulp.task('prod-url-service', function() {
   return gulp.src([

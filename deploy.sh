@@ -5,9 +5,10 @@
 # This will remove old data, populate it with some seed data and create 2 default users
 # admin@useriq.com - useriq16
 # user@userq.com - useriq16
-
+echo "$1"
 heroku buildpacks:add --index 1 heroku/nodejs
 heroku buildpacks:add --index 2 heroku/ruby
+heroku config:set SALES_URL="$1"
 git push heroku master
 heroku pg:reset DATABASE_URL --confirm sales-seed
 heroku run rails db:migrate
